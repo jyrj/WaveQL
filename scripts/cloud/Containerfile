@@ -1,0 +1,2 @@
+FROM registry.fedoraproject.org/fedora:44
+RUN dnf -y install procps-ng gawk util-linux tar zstd findutils which diffutils hostname ca-certificates psmisc && dnf clean all

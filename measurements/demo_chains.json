@@ -1,0 +1,2325 @@
+[
+ {
+  "id": "b3bd38d7",
+  "stimulus": "rv64ui-p-add",
+  "kind": "pc",
+  "cycle": 352,
+  "dut": "0x10040",
+  "golden": "0x80000000",
+  "reg": null,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "frontend.s0_vpc",
+    "value": "65736",
+    "chisel": "frontend.scala:167:23",
+    "block": "Frontend"
+   },
+   {
+    "depth": 1,
+    "signal": "frontend.io_cpu_sfence_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 2,
+    "signal": "frontend.f3_redirects_2",
+    "value": "0",
+    "chisel": "frontend.scala:538:11",
+    "block": "Frontend"
+   },
+   {
+    "depth": 3,
+    "signal": "io_ifu_sfence_valid",
+    "value": "0",
+    "chisel": "core.scala:51:7",
+    "block": "Frontend"
+   },
+   {
+    "depth": 4,
+    "signal": "io_ifu_sfence_REG_valid",
+    "value": "0",
+    "chisel": "core.scala:571:31",
+    "block": "Frontend"
+   },
+   {
+    "depth": 5,
+    "signal": "nextSmall",
+    "value": "14",
+    "chisel": "Counters.scala:45:41",
+    "block": "Core"
+   },
+   {
+    "depth": 6,
+    "signal": "memExeUnit.io_lsu_io_req_bits_sfence_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 7,
+    "signal": "memExeUnit.maddrcalc.io_resp_bits_sfence_valid",
+    "value": "0",
+    "chisel": "functional-unit.scala:482:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 8,
+    "signal": "memExeUnit.maddrcalc.io_req_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "memExeUnit.io_req_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 10,
+    "signal": "rob.can_throw_exception_1",
+    "value": "0",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 11,
+    "signal": "iregister_read.io_exe_reqs_0_valid",
+    "value": "0",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 12,
+    "signal": "iregister_read.exe_reg_valids_0",
+    "value": "0",
+    "chisel": "register-read.scala:69:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 13,
+    "signal": "iregister_read.rrd_uops_0_REG_fu_code",
+    "value": "0",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "core.scala",
+  "bug_line": 507,
+  "bug_dir": "exu",
+  "operator": "regnext_drop",
+  "baseline_passed": 0,
+  "signals": 29469,
+  "changes": 89014,
+  "vcd_mb": 12,
+  "seconds": 17.4
+ },
+ {
+  "id": "55a43788",
+  "stimulus": "mm.riscv",
+  "kind": "wdata",
+  "cycle": 11113,
+  "dut": "0x45b475957cc557f5",
+  "golden": "0x45b475957c964d4d",
+  "reg": 13,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_commit_debug_wdata_1",
+    "value": "5022768769328830453",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "crossing": "written at cycle 11086 by port W4"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_debug_wb_wdata_4",
+    "value": "5022768769328830453",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "FpPipeline.io_debug_wb_wdata_1",
+    "value": "None",
+    "chisel": "execution-units.scala:131:32",
+    "block": "FPU"
+   },
+   {
+    "depth": 6,
+    "signal": "FpPipeline.io_debug_wb_wdata_1_unrecoded_isSubnormal",
+    "value": "None",
+    "chisel": "execution-units.scala:131:32",
+    "block": "FPU"
+   },
+   {
+    "depth": 7,
+    "signal": "FpPipeline.fpu_exe_unit.io_fresp_bits_data",
+    "value": "None",
+    "chisel": "execution-unit.scala:444:7",
+    "block": "FPU"
+   },
+   {
+    "depth": 9,
+    "signal": "FpPipeline.fpu_exe_unit.FPUUnit.io_resp_valid",
+    "value": "None",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "FPU"
+   },
+   {
+    "depth": 10,
+    "signal": "FpPipeline.fpu_exe_unit.FPUUnit.r_valids_3",
+    "value": "None",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "FPU"
+   },
+   {
+    "depth": 11,
+    "signal": "FpPipeline.fpu_exe_unit.io_brupdate_b1_mispredict_mask",
+    "value": "0",
+    "chisel": "",
+    "block": "FPU"
+   },
+   {
+    "depth": 12,
+    "signal": "FpPipeline.io_brupdate_b1_mispredict_mask",
+    "value": "0",
+    "chisel": "",
+    "block": "FPU"
+   },
+   {
+    "depth": 13,
+    "signal": "FpPipeline.fpu_exe_unit.FDivSqrtUnit.r_out_val",
+    "value": "None",
+    "chisel": "fdiv.scala:184:26",
+    "block": "FPU"
+   },
+   {
+    "depth": 14,
+    "signal": "brinfos_0_uop_br_tag",
+    "value": "0",
+    "chisel": "core.scala:187:20",
+    "block": "Core"
+   },
+   {
+    "depth": 15,
+    "signal": "FpPipeline.fpu_exe_unit.io_req_bits_uop_br_mask",
+    "value": "None",
+    "chisel": "",
+    "block": "FPU"
+   },
+   {
+    "depth": 16,
+    "signal": "alu_exe_unit.io_brinfo_uop_br_tag",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 17,
+    "signal": "alu_exe_unit.ALUUnit.io_brinfo_uop_br_tag",
+    "value": "0",
+    "chisel": "functional-unit.scala:290:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 18,
+    "signal": "alu_exe_unit.ALUUnit.io_req_bits_uop_br_tag",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   }
+  ],
+  "bug_file": "fpu.scala",
+  "bug_line": 195,
+  "bug_dir": "execution-units",
+  "operator": "when_negate",
+  "baseline_passed": 9,
+  "signals": 29470,
+  "changes": 162681,
+  "vcd_mb": 16,
+  "seconds": 26.3
+ },
+ {
+  "id": "1f8aa100",
+  "stimulus": "dhrystone.riscv",
+  "kind": "assertion",
+  "cycle": 3119,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "3119",
+   "last_recorded_cycle": "11312",
+   "stalled_cycles": "8193",
+   "rob_head": "8",
+   "rob_tail": "0",
+   "rob_state": "1",
+   "entries_valid": "24",
+   "entries_valid_and_busy": "2",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_1_8",
+    "value": "1",
+    "stopped": "3104",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_enq_valids_0",
+    "value": "0",
+    "stopped": "3137",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "dis_fire_0",
+    "value": "0",
+    "stopped": "3137",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.maybe_full",
+    "value": "1",
+    "stopped": "3120",
+    "chisel": "rob.scala:242:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "rob.rob_head",
+    "value": "8",
+    "stopped": "3119",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 6,
+    "signal": "rename_stage.io_ren2_mask_0",
+    "value": "1",
+    "stopped": "3119",
+    "chisel": "rename-stage.scala:126:27",
+    "block": "Rename"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.rob_val_1_8",
+    "value": "1",
+    "stopped": "3104",
+    "chisel": "rob.scala:315:32",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "alu_exe_unit.PipelinedMulUnit.io_resp_valid",
+    "value": "0",
+    "stopped": "3089",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "alu_exe_unit.PipelinedMulUnit.r_valids_2",
+    "value": "0",
+    "stopped": "3089",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "Execute"
+   },
+   {
+    "depth": 10,
+    "signal": "lsu.stq_commit_head",
+    "value": "1",
+    "stopped": "3120",
+    "chisel": "lsu.scala:226:29",
+    "block": "LSU"
+   },
+   {
+    "depth": 11,
+    "signal": "lsu.commit_store_1",
+    "value": "0",
+    "stopped": "3118",
+    "chisel": "lsu.scala:1486:49",
+    "block": "LSU"
+   },
+   {
+    "depth": 12,
+    "signal": "lsu.io_core_commit_uops_1_uses_stq",
+    "value": "0",
+    "stopped": "3118",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 13,
+    "signal": "dcache.io_lsu_resp_0_bits_uop_uses_ldq",
+    "value": "1",
+    "stopped": "3124",
+    "chisel": "dcache.scala:413:7",
+    "block": "D-cache"
+   },
+   {
+    "depth": 14,
+    "signal": "io_lsu_commit_uops_1_uses_stq",
+    "value": "0",
+    "stopped": "3118",
+    "chisel": "core.scala:51:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 15,
+    "signal": "lsu.ldq_head",
+    "value": "14",
+    "stopped": "3119",
+    "chisel": "lsu.scala:222:29",
+    "block": "LSU"
+   },
+   {
+    "depth": 16,
+    "signal": "lsu.ldq_5_bits_addr_valid",
+    "value": "0",
+    "stopped": "3111",
+    "chisel": "lsu.scala:217:16",
+    "block": "LSU"
+   },
+   {
+    "depth": 17,
+    "signal": "rob.rob_uop_1_8_uses_stq",
+    "value": "0",
+    "stopped": "3104",
+    "chisel": "rob.scala:318:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 18,
+    "signal": "lsu.wb_forward_valid_0",
+    "value": "0",
+    "stopped": "3100",
+    "chisel": "lsu.scala:1088:36",
+    "block": "LSU"
+   }
+  ],
+  "bug_file": "issue-unit-age-ordered.scala",
+  "bug_line": 87,
+  "bug_dir": "issue-units",
+  "operator": "gt_to_ge",
+  "baseline_passed": 8,
+  "signals": 29461,
+  "changes": 593899,
+  "vcd_mb": 110,
+  "seconds": 18.1
+ },
+ {
+  "id": "c80f8bde",
+  "stimulus": "rv64ui-p-sw",
+  "kind": "wdata",
+  "cycle": 1688,
+  "dut": "0xffffffffdeadbeef",
+  "golden": "0x12345678",
+  "reg": 5,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_commit_debug_wdata_1",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "crossing": "written at cycle 1685 by port W3"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_debug_wb_wdata_0",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_debug_wb_wdata_3",
+    "value": "18446744069414584320",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "ll_wbarb.io_out_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "Arbiter.scala:133:7",
+    "block": "Writeback"
+   },
+   {
+    "depth": 6,
+    "signal": "ll_wbarb.io_in_0_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "Writeback"
+   },
+   {
+    "depth": 7,
+    "signal": "FpPipeline.io_debug_wb_wdata_0_unrecoded_isSubnormal",
+    "value": "None",
+    "chisel": "fp-pipeline.scala:178:24",
+    "block": "FPU"
+   },
+   {
+    "depth": 8,
+    "signal": "memExeUnit.io_ll_iresp_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "execution-unit.scala:208:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "memExeUnit.io_lsu_io_iresp_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 10,
+    "signal": "io_lsu_exe_0_iresp_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 11,
+    "signal": "memExeUnit.io_ll_fresp_valid",
+    "value": "0",
+    "chisel": "execution-unit.scala:208:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "lsu.io_core_exe_0_iresp_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "lsu.scala:210:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 13,
+    "signal": "lsu.io_dmem_resp_0_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 14,
+    "signal": "alu_exe_unit.queue.io_enq_bits_data",
+    "value": "36888984543496765440",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 15,
+    "signal": "dcache.io_lsu_resp_0_bits_data",
+    "value": "18446744073150512879",
+    "chisel": "dcache.scala:413:7",
+    "block": "D-cache"
+   },
+   {
+    "depth": 16,
+    "signal": "dcache.s2_sc",
+    "value": "0",
+    "chisel": "dcache.scala:633:25",
+    "block": "D-cache"
+   },
+   {
+    "depth": 17,
+    "signal": "dcache.s1_req_0_uop_mem_size",
+    "value": "0",
+    "chisel": "dcache.scala:433:21",
+    "block": "D-cache"
+   }
+  ],
+  "bug_file": "lsu.scala",
+  "bug_line": 1112,
+  "bug_dir": "lsu",
+  "operator": "and_to_or",
+  "baseline_passed": 11,
+  "signals": 29470,
+  "changes": 340018,
+  "vcd_mb": 18,
+  "seconds": 16.6
+ },
+ {
+  "id": "ca3319d3",
+  "stimulus": "mm.riscv",
+  "kind": "assertion",
+  "cycle": 19392,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "19392",
+   "last_recorded_cycle": "27585",
+   "stalled_cycles": "8193",
+   "rob_head": "6",
+   "rob_tail": "25",
+   "rob_state": "1",
+   "entries_valid": "20",
+   "entries_valid_and_busy": "2",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_1_6",
+    "value": "1",
+    "stopped": "19361",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_lsu_clr_bsy_0_valid",
+    "value": "0",
+    "stopped": "19375",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_lsu_clr_bsy_1_valid",
+    "value": "0",
+    "stopped": "19351",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_wb_resps_2_valid",
+    "value": "0",
+    "stopped": "19369",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "lsu.io_core_clr_bsy_0_valid",
+    "value": "0",
+    "stopped": "19375",
+    "chisel": "lsu.scala:210:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 6,
+    "signal": "brinfos_1_valid",
+    "value": "0",
+    "stopped": "19366",
+    "chisel": "core.scala:145:32",
+    "block": "Core"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.rob_val_1_6",
+    "value": "1",
+    "stopped": "19361",
+    "chisel": "rob.scala:315:32",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "alu_exe_unit.ALUUnit.io_resp_valid",
+    "value": "0",
+    "stopped": "19371",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "brinfos_0_uop_br_tag",
+    "value": "0",
+    "stopped": "19369",
+    "chisel": "core.scala:187:20",
+    "block": "Core"
+   },
+   {
+    "depth": 10,
+    "signal": "rename_stage.r_uop_1_dst_rtype",
+    "value": "1",
+    "stopped": "19365",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   },
+   {
+    "depth": 11,
+    "signal": "rename_stage.io_dec_uops_1_dst_rtype",
+    "value": "1",
+    "stopped": "19364",
+    "chisel": "",
+    "block": "Rename"
+   },
+   {
+    "depth": 12,
+    "signal": "alu_exe_unit.PipelinedMulUnit.io_req_bits_uop_rob_idx",
+    "value": "0",
+    "stopped": "19368",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 13,
+    "signal": "lsu.dis_st_val_1",
+    "value": "0",
+    "stopped": "19364",
+    "chisel": "lsu.scala:322:88",
+    "block": "LSU"
+   },
+   {
+    "depth": 14,
+    "signal": "lsu.io_core_dis_uops_1_bits_uses_stq",
+    "value": "0",
+    "stopped": "19364",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 15,
+    "signal": "iregister_read.rrd_uops_2_REG_br_mask",
+    "value": "0",
+    "stopped": "19365",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 16,
+    "signal": "io_lsu_dis_uops_1_bits_uses_stq",
+    "value": "0",
+    "stopped": "19364",
+    "chisel": "core.scala:51:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 17,
+    "signal": "lsu.ldq_13_bits_uop_dst_rtype",
+    "value": "1",
+    "stopped": "19358",
+    "chisel": "lsu.scala:217:16",
+    "block": "LSU"
+   },
+   {
+    "depth": 18,
+    "signal": "rename_stage.io_ren2_uops_1_uses_stq",
+    "value": "0",
+    "stopped": "19364",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   }
+  ],
+  "bug_file": "mshrs.scala",
+  "bug_line": 282,
+  "bug_dir": "lsu",
+  "operator": "handshake_drop_ready_lhs",
+  "baseline_passed": 10,
+  "signals": 29466,
+  "changes": 336594,
+  "vcd_mb": 101,
+  "seconds": 47.7
+ },
+ {
+  "id": "98598e5f",
+  "stimulus": "rv64ui-p-add",
+  "kind": "assertion",
+  "cycle": 51,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "51",
+   "last_recorded_cycle": "8244",
+   "stalled_cycles": "8193",
+   "rob_head": "2",
+   "rob_tail": "3",
+   "rob_state": "1",
+   "entries_valid": "2",
+   "entries_valid_and_busy": "2",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_2",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_enq_valids_1",
+    "value": "0",
+    "stopped": "59",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "dis_fire_1",
+    "value": "0",
+    "stopped": "59",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 4,
+    "signal": "dis_stalls_1",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 5,
+    "signal": "wait_for_empty_pipeline_1",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "parameters.scala:158:49",
+    "block": "Core"
+   },
+   {
+    "depth": 6,
+    "signal": "dis_fire_0",
+    "value": "0",
+    "stopped": "60",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 7,
+    "signal": "rename_stage.io_ren2_uops_1_is_unique",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   },
+   {
+    "depth": 8,
+    "signal": "rename_stage.r_uop_1_is_unique",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   },
+   {
+    "depth": 9,
+    "signal": "rob.rob_val_1_2",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "rob.scala:315:32",
+    "block": "ROB"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.ALUUnit.io_get_ftq_pc_next_pc",
+    "value": "65576",
+    "stopped": "60",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.io_get_ftq_pc_next_pc",
+    "value": "65576",
+    "stopped": "60",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "io_ifu_get_pc_0_next_pc",
+    "value": "65576",
+    "stopped": "60",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 13,
+    "signal": "iregister_read.io_exe_reqs_2_bits_uop_rob_idx",
+    "value": "0",
+    "stopped": "50",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 14,
+    "signal": "io_ifu_fetchpacket_bits_uops_1_bits_inst",
+    "value": "876949619",
+    "stopped": "59",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 15,
+    "signal": "rob.flush_val",
+    "value": "0",
+    "stopped": "52",
+    "chisel": "rob.scala:573:85",
+    "block": "ROB"
+   },
+   {
+    "depth": 16,
+    "signal": "frontend.io_cpu_fetchpacket_bits_uops_1_bits_inst",
+    "value": "876949619",
+    "stopped": "59",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 17,
+    "signal": "iregister_read_io_kill_REG",
+    "value": "0",
+    "stopped": "53",
+    "chisel": "core.scala:145:32",
+    "block": "RegRead"
+   },
+   {
+    "depth": 18,
+    "signal": "frontend.io_cpu_get_pc_0_ftq_idx",
+    "value": "6",
+    "stopped": "59",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 19,
+    "signal": "rob.io_enq_uops_1_flush_on_commit",
+    "value": "1",
+    "stopped": "59",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 20,
+    "signal": "iregister_read.exe_reg_uops_2_ctrl_fcn_dw",
+    "value": "1",
+    "stopped": "54",
+    "chisel": "register-read.scala:70:29",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "core.scala",
+  "bug_line": 1386,
+  "bug_dir": "exu",
+  "operator": "mux_arm_swap",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 170352,
+  "vcd_mb": 87,
+  "seconds": 20.1
+ },
+ {
+  "id": "dc210e12",
+  "stimulus": "rv64ui-p-fence_i",
+  "kind": "wdata",
+  "cycle": 1571,
+  "dut": "0x800001de",
+  "golden": "0x800001e0",
+  "reg": 6,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_commit_debug_wdata_0",
+    "value": "2147484126",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "crossing": "written at cycle 1570 by port W3"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_debug_wb_wdata_1",
+    "value": "2147484126",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_debug_wb_wdata_4",
+    "value": "18446744069414584320",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "alu_exe_unit.io_iresp_bits_data",
+    "value": "2147484126",
+    "chisel": "execution-unit.scala:208:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 6,
+    "signal": "FpPipeline.io_debug_wb_wdata_1",
+    "value": "None",
+    "chisel": "execution-units.scala:131:32",
+    "block": "FPU"
+   },
+   {
+    "depth": 7,
+    "signal": "alu_exe_unit.ALUUnit.io_resp_bits_data",
+    "value": "2147484126",
+    "chisel": "functional-unit.scala:290:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 8,
+    "signal": "alu_exe_unit.ALUUnit.r_data_2",
+    "value": "2147484126",
+    "chisel": "functional-unit.scala:447:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "alu_exe_unit.ALUUnit.r_data_1",
+    "value": "2147484126",
+    "chisel": "functional-unit.scala:447:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 10,
+    "signal": "FpPipeline.fpu_exe_unit.FDivSqrtUnit.io_resp_bits_data",
+    "value": "None",
+    "chisel": "fdiv.scala:84:7",
+    "block": "FPU"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.ALUUnit.alu_out",
+    "value": "2147484126",
+    "chisel": "functional-unit.scala:327:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "alu_exe_unit.ALUUnit.io_req_bits_uop_uopc",
+    "value": "38",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 13,
+    "signal": "alu_exe_unit.io_req_bits_rs2_data",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 15,
+    "signal": "iregister_read.io_exe_reqs_1_bits_rs2_data",
+    "value": "0",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 16,
+    "signal": "iregister_read.exe_reg_rs2_data_1",
+    "value": "0",
+    "chisel": "micro-op.scala:149:36",
+    "block": "RegRead"
+   },
+   {
+    "depth": 17,
+    "signal": "iregister_read.io_bypass_0_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "RegRead"
+   },
+   {
+    "depth": 18,
+    "signal": "iregister_read.rrd_uops_1_REG_lrs2_rtype",
+    "value": "2",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "functional-unit.scala",
+  "bug_line": 324,
+  "bug_dir": "execution-units",
+  "operator": "mux_arm_swap",
+  "baseline_passed": 7,
+  "signals": 29470,
+  "changes": 79879,
+  "vcd_mb": 12,
+  "seconds": 17.6
+ },
+ {
+  "id": "817f37e2",
+  "stimulus": "rv64ui-p-add",
+  "kind": "assertion",
+  "cycle": 27,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "27",
+   "last_recorded_cycle": "8220",
+   "stalled_cycles": "8193",
+   "rob_head": "0",
+   "rob_tail": "1",
+   "rob_state": "1",
+   "entries_valid": "0",
+   "entries_valid_and_busy": "0",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_1_0",
+    "value": "1",
+    "stopped": "29",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_lsu_clr_bsy_0_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_lsu_clr_bsy_1_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "io_lsu_clr_bsy_1_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 5,
+    "signal": "nextSmall",
+    "value": "32",
+    "stopped": "4123",
+    "chisel": "Counters.scala:45:41",
+    "block": "Core"
+   },
+   {
+    "depth": 6,
+    "signal": "small_0",
+    "value": "31",
+    "stopped": "4123",
+    "chisel": "Counters.scala:45:41",
+    "block": "Core"
+   },
+   {
+    "depth": 7,
+    "signal": "lsu.stdf_clr_bsy_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "lsu.scala:1006:37",
+    "block": "LSU"
+   },
+   {
+    "depth": 8,
+    "signal": "lsu.fired_stdf_incoming",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "lsu.scala:921:37",
+    "block": "LSU"
+   },
+   {
+    "depth": 9,
+    "signal": "lsu.fp_stdata_fire",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "lsu.scala:889:61",
+    "block": "LSU"
+   },
+   {
+    "depth": 10,
+    "signal": "lsu.io_core_fp_stdata_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 11,
+    "signal": "io_lsu_exe_0_req_bits_uop_ctrl_is_std",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 12,
+    "signal": "io_lsu_fp_stdata_valid",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 13,
+    "signal": "FpPipeline.io_to_sdq_valid",
+    "value": "None",
+    "stopped": "None",
+    "chisel": "execution-units.scala:131:32",
+    "block": "FPU"
+   },
+   {
+    "depth": 14,
+    "signal": "memExeUnit.maddrcalc.io_resp_bits_uop_ctrl_is_sta",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "functional-unit.scala:482:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 15,
+    "signal": "memExeUnit.maddrcalc.io_req_bits_uop_ctrl_is_sta",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 16,
+    "signal": "memExeUnit.io_req_bits_uop_ctrl_is_sta",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 17,
+    "signal": "iregister_read.io_exe_reqs_0_bits_uop_ctrl_is_std",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 18,
+    "signal": "iregister_read.io_exe_reqs_0_bits_uop_ctrl_is_sta",
+    "value": "0",
+    "stopped": "29",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "issue-slot.scala",
+  "bug_line": 133,
+  "bug_dir": "issue-units",
+  "operator": "elsewhen_negate",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 165688,
+  "vcd_mb": 86,
+  "seconds": 18.7
+ },
+ {
+  "id": "1132ff87",
+  "stimulus": "rv64ui-p-add",
+  "kind": "wdata",
+  "cycle": 1489,
+  "dut": "0x8000017c",
+  "golden": "0x0",
+  "reg": 14,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_commit_debug_wdata_1",
+    "value": "2147484028",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "crossing": "written at cycle 1488 by port W2"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.io_debug_wb_wdata_1",
+    "value": "2147484028",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_debug_wb_wdata_3",
+    "value": "18446744069414584320",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "alu_exe_unit.io_iresp_bits_data",
+    "value": "2147484028",
+    "chisel": "execution-unit.scala:208:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 6,
+    "signal": "FpPipeline.io_debug_wb_wdata_0",
+    "value": "None",
+    "chisel": "fp-pipeline.scala:28:7",
+    "block": "FPU"
+   },
+   {
+    "depth": 7,
+    "signal": "alu_exe_unit.ALUUnit.io_resp_bits_data",
+    "value": "2147484028",
+    "chisel": "functional-unit.scala:290:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 8,
+    "signal": "alu_exe_unit.ALUUnit.r_data_2",
+    "value": "2147484028",
+    "chisel": "functional-unit.scala:447:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "alu_exe_unit.ALUUnit.r_data_1",
+    "value": "2147484027",
+    "chisel": "functional-unit.scala:447:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.ALUUnit.r_data_0",
+    "value": "1",
+    "chisel": "functional-unit.scala:447:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.ALUUnit.alu_out",
+    "value": "1",
+    "chisel": "functional-unit.scala:327:19",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "alu_exe_unit.ALUUnit.io_req_bits_uop_uopc",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 13,
+    "signal": "alu_exe_unit.io_req_bits_rs2_data",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 15,
+    "signal": "iregister_read.io_exe_reqs_1_bits_rs2_data",
+    "value": "0",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 16,
+    "signal": "iregister_read.exe_reg_rs2_data_1",
+    "value": "0",
+    "chisel": "micro-op.scala:149:36",
+    "block": "RegRead"
+   },
+   {
+    "depth": 17,
+    "signal": "iregister_read.io_bypass_0_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "register-read.scala",
+  "bug_line": 176,
+  "bug_dir": "register-read",
+  "operator": "eq_to_ne",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 82785,
+  "vcd_mb": 12,
+  "seconds": 20.6
+ },
+ {
+  "id": "6ae5fde8",
+  "stimulus": "rv64ui-p-add",
+  "kind": "assertion",
+  "cycle": 1134,
+  "dut": null,
+  "golden": "rename-freelist.scala:95",
+  "reg": null,
+  "mode": "rob_empty",
+  "facts": {
+   "last_retired_cycle": "1134",
+   "last_recorded_cycle": "1135",
+   "stalled_cycles": "1",
+   "rob_head": "5",
+   "rob_tail": "5",
+   "rob_state": "1",
+   "entries_valid": "0",
+   "entries_valid_and_busy": "0",
+   "mode_note": "the ROB is empty and nothing is retiring: the defect is upstream of dispatch, not in a stuck entry"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_enq_valids_0",
+    "value": "1",
+    "stopped": "1135",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 1,
+    "signal": "dis_fire_0",
+    "value": "1",
+    "stopped": "1135",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 2,
+    "signal": "dis_stalls_0",
+    "value": "0",
+    "stopped": "1135",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 3,
+    "signal": "wait_for_empty_pipeline_0",
+    "value": "0",
+    "stopped": "1135",
+    "chisel": "parameters.scala:158:49",
+    "block": "Core"
+   },
+   {
+    "depth": 4,
+    "signal": "nextSmall",
+    "value": "1",
+    "stopped": "1134",
+    "chisel": "Counters.scala:45:41",
+    "block": "Core"
+   },
+   {
+    "depth": 5,
+    "signal": "rob.io_empty",
+    "value": "1",
+    "stopped": "1135",
+    "chisel": "rob.scala:215:7",
+    "block": "ROB"
+   },
+   {
+    "depth": 6,
+    "signal": "rob.empty",
+    "value": "1",
+    "stopped": "1135",
+    "chisel": "rob.scala:718:42",
+    "block": "ROB"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.do_inc_row",
+    "value": "0",
+    "stopped": "1129",
+    "chisel": "rob.scala:235:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "lsu.io_core_commit_valids_1",
+    "value": "0",
+    "stopped": "1135",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 9,
+    "signal": "int_issue_unit.num_available",
+    "value": "19",
+    "stopped": "1135",
+    "chisel": "issue-unit-age-ordered.scala:29:7",
+    "block": "Issue"
+   },
+   {
+    "depth": 10,
+    "signal": "io_lsu_commit_valids_1",
+    "value": "0",
+    "stopped": "1135",
+    "chisel": "core.scala:51:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 11,
+    "signal": "int_issue_unit.will_be_valid_20",
+    "value": "1",
+    "stopped": "1135",
+    "chisel": "issue-unit-age-ordered.scala:61:77",
+    "block": "Issue"
+   },
+   {
+    "depth": 12,
+    "signal": "rob.io_commit_valids_1",
+    "value": "0",
+    "stopped": "1135",
+    "chisel": "rob.scala:215:7",
+    "block": "ROB"
+   },
+   {
+    "depth": 13,
+    "signal": "iregister_read.exe_reg_uops_1_pc_lob",
+    "value": "0",
+    "stopped": "1131",
+    "chisel": "register-read.scala:70:29",
+    "block": "RegRead"
+   },
+   {
+    "depth": 14,
+    "signal": "mem_issue_unit.io_flush_pipeline",
+    "value": "0",
+    "stopped": "340",
+    "chisel": "",
+    "block": "Issue"
+   }
+  ],
+  "bug_file": "rename-stage.scala",
+  "bug_line": 198,
+  "bug_dir": "rename",
+  "operator": "or_to_and",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 77076,
+  "vcd_mb": 18,
+  "seconds": 27.3
+ },
+ {
+  "id": "f27b9c07",
+  "stimulus": "rv64ui-p-add",
+  "kind": "assertion",
+  "cycle": 2467,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "rob_empty",
+  "facts": {
+   "last_retired_cycle": "2467",
+   "last_recorded_cycle": "10660",
+   "stalled_cycles": "8193",
+   "rob_head": "7",
+   "rob_tail": "7",
+   "rob_state": "1",
+   "entries_valid": "0",
+   "entries_valid_and_busy": "0",
+   "mode_note": "the ROB is empty and nothing is retiring: the defect is upstream of dispatch, not in a stuck entry"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_enq_valids_0",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 1,
+    "signal": "dis_fire_0",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 2,
+    "signal": "dis_stalls_0",
+    "value": "1",
+    "stopped": "2451",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 3,
+    "signal": "io_lsu_stq_full_0",
+    "value": "1",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 4,
+    "signal": "rename_stage.io_ren2_uops_0_uses_stq",
+    "value": "1",
+    "stopped": "2450",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   },
+   {
+    "depth": 5,
+    "signal": "lsu.io_core_stq_full_0",
+    "value": "1",
+    "stopped": "2451",
+    "chisel": "lsu.scala:210:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 6,
+    "signal": "rename_stage.io_dec_uops_0_uses_stq",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "Rename"
+   },
+   {
+    "depth": 7,
+    "signal": "lsu.stq_tail",
+    "value": "14",
+    "stopped": "2451",
+    "chisel": "lsu.scala:225:29",
+    "block": "LSU"
+   },
+   {
+    "depth": 8,
+    "signal": "lsu.dis_st_val",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "lsu.scala:322:88",
+    "block": "LSU"
+   },
+   {
+    "depth": 9,
+    "signal": "lsu.io_core_dis_uops_1_valid",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.ALUUnit.pc_sel",
+    "value": "0",
+    "stopped": "2458",
+    "chisel": "functional-unit.scala:344:21",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "io_lsu_dis_uops_1_valid",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "core.scala:51:7",
+    "block": "LSU"
+   },
+   {
+    "depth": 12,
+    "signal": "dis_fire_1",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 13,
+    "signal": "dis_stalls_1",
+    "value": "1",
+    "stopped": "2451",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 14,
+    "signal": "rename_stage.r_uop_1_uses_stq",
+    "value": "0",
+    "stopped": "2449",
+    "chisel": "rename-stage.scala:127:23",
+    "block": "Rename"
+   },
+   {
+    "depth": 15,
+    "signal": "rename_stage.io_dec_uops_1_uses_stq",
+    "value": "1",
+    "stopped": "2452",
+    "chisel": "",
+    "block": "Rename"
+   },
+   {
+    "depth": 16,
+    "signal": "rob.io_enq_uops_1_uses_stq",
+    "value": "0",
+    "stopped": "2449",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 17,
+    "signal": "rob.io_enq_valids_1",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 18,
+    "signal": "frontend.io_cpu_fetchpacket_ready",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 19,
+    "signal": "rob.rob_tail",
+    "value": "7",
+    "stopped": "2451",
+    "chisel": "rob.scala:231:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 20,
+    "signal": "io_ifu_fetchpacket_ready",
+    "value": "0",
+    "stopped": "2451",
+    "chisel": "core.scala:51:7",
+    "block": "Frontend"
+   },
+   {
+    "depth": 21,
+    "signal": "rob.io_enq_partial_stall",
+    "value": "1",
+    "stopped": "2451",
+    "chisel": "",
+    "block": "ROB"
+   }
+  ],
+  "bug_file": "dcache.scala",
+  "bug_line": 108,
+  "bug_dir": "lsu",
+  "operator": "when_negate",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 896823,
+  "vcd_mb": 124,
+  "seconds": 31.3
+ },
+ {
+  "id": "a096a6d1",
+  "stimulus": "rv64ua-p-amoadd_d",
+  "kind": "wdata",
+  "cycle": 1542,
+  "dut": "0x0",
+  "golden": "0xffffffff80000000",
+  "reg": 14,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.io_commit_debug_wdata_0",
+    "value": "0",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "crossing": "written at cycle 1541 by port W4"
+   },
+   {
+    "depth": 3,
+    "signal": "rob.rob_head",
+    "value": "28",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.finished_committing_row",
+    "value": "0",
+    "chisel": "rob.scala:242:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "rob.maybe_full",
+    "value": "0",
+    "chisel": "rob.scala:242:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 6,
+    "signal": "alu_exe_unit.io_iresp_valid",
+    "value": "0",
+    "chisel": "execution-unit.scala:208:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.do_inc_row",
+    "value": "0",
+    "chisel": "rob.scala:235:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "alu_exe_unit.ALUUnit.io_resp_valid",
+    "value": "0",
+    "chisel": "functional-unit.scala:236:27",
+    "block": "Execute"
+   },
+   {
+    "depth": 9,
+    "signal": "rob.rob_pnr",
+    "value": "28",
+    "chisel": "rob.scala:235:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.PipelinedMulUnit.r_uops_1_dst_rtype",
+    "value": "2",
+    "chisel": "functional-unit.scala:237:23",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.io_ll_fresp_bits_uop_rob_idx",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "alu_exe_unit.queue.io_deq_bits_uop_rob_idx",
+    "value": "0",
+    "chisel": "util.scala:448:7",
+    "block": "Execute"
+   },
+   {
+    "depth": 13,
+    "signal": "rob.rob_head_vals_1",
+    "value": "0",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 14,
+    "signal": "alu_exe_unit.ALUUnit.jalr_target",
+    "value": "0",
+    "chisel": "functional-unit.scala:410:25",
+    "block": "Execute"
+   },
+   {
+    "depth": 15,
+    "signal": "alu_exe_unit.IntToFPUnit.io_resp_bits_uop_rob_idx",
+    "value": "0",
+    "chisel": "functional-unit.scala:237:23",
+    "block": "Execute"
+   },
+   {
+    "depth": 16,
+    "signal": "rob.com_idx",
+    "value": "28",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 17,
+    "signal": "alu_exe_unit.IntToFPUnit.r_uops_0_rob_idx",
+    "value": "0",
+    "chisel": "functional-unit.scala:237:23",
+    "block": "Execute"
+   },
+   {
+    "depth": 18,
+    "signal": "alu_exe_unit.IntToFPUnit.io_req_bits_uop_rob_idx",
+    "value": "0",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 19,
+    "signal": "lsu.dword_addr_matches_18_0",
+    "value": "0",
+    "chisel": "lsu.scala:218:16",
+    "block": "LSU"
+   },
+   {
+    "depth": 20,
+    "signal": "rob.io_lsu_clr_bsy_0_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "ROB"
+   }
+  ],
+  "bug_file": "dcache.scala",
+  "bug_line": 590,
+  "bug_dir": "lsu",
+  "operator": "mux_arm_swap",
+  "baseline_passed": 3,
+  "signals": 29470,
+  "changes": 76962,
+  "vcd_mb": 12,
+  "seconds": 19.1
+ },
+ {
+  "id": "e47efcc2",
+  "stimulus": "rv64ui-p-lw",
+  "kind": "assertion",
+  "cycle": 1537,
+  "dut": null,
+  "golden": "mshrs.scala:213",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "1537",
+   "last_recorded_cycle": "1539",
+   "stalled_cycles": "2",
+   "rob_head": "10",
+   "rob_tail": "15",
+   "rob_state": "1",
+   "entries_valid": "5",
+   "entries_valid_and_busy": "2",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_1_10",
+    "value": "1",
+    "stopped": "1518",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_enq_valids_0",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "dis_fire_0",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_wb_resps_1_valid",
+    "value": "0",
+    "stopped": "1529",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "rob.io_enq_valids_1",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 6,
+    "signal": "dis_fire_1",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.will_commit_1",
+    "value": "0",
+    "stopped": "1537",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "rename_stage.io_ren2_mask_1",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "rename-stage.scala:126:27",
+    "block": "Rename"
+   },
+   {
+    "depth": 9,
+    "signal": "rob.rob_val_1_10",
+    "value": "1",
+    "stopped": "1518",
+    "chisel": "rob.scala:315:32",
+    "block": "ROB"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.ALUUnit.io_get_ftq_pc_next_pc",
+    "value": "2147484168",
+    "stopped": "1525",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.io_get_ftq_pc_next_pc",
+    "value": "2147484168",
+    "stopped": "1525",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "rob.rob_unsafe_1_10",
+    "value": "1",
+    "stopped": "1518",
+    "chisel": "rob.scala:317:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 13,
+    "signal": "iregister_read.io_exe_reqs_2_bits_uop_br_mask",
+    "value": "0",
+    "stopped": "1531",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 14,
+    "signal": "lsu.io_core_dis_uops_1_valid",
+    "value": "0",
+    "stopped": "1522",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 15,
+    "signal": "iregister_read.rrd_uops_2_REG_br_mask",
+    "value": "0",
+    "stopped": "1530",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 16,
+    "signal": "lsu.ldq_0_bits_addr_valid",
+    "value": "0",
+    "stopped": "1519",
+    "chisel": "lsu.scala:217:16",
+    "block": "LSU"
+   },
+   {
+    "depth": 17,
+    "signal": "rob.rob_uop_10_uses_stq",
+    "value": "0",
+    "stopped": "1518",
+    "chisel": "rob.scala:318:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 18,
+    "signal": "lsu.io_core_dis_uops_1_bits_dst_rtype",
+    "value": "0",
+    "stopped": "1518",
+    "chisel": "",
+    "block": "LSU"
+   }
+  ],
+  "bug_file": "dcache.scala",
+  "bug_line": 749,
+  "bug_dir": "lsu",
+  "operator": "and_to_or",
+  "baseline_passed": 4,
+  "signals": 29470,
+  "changes": 149272,
+  "vcd_mb": 24,
+  "seconds": 16.4
+ },
+ {
+  "id": "d5df30fa",
+  "stimulus": "rv64ui-p-add",
+  "kind": "assertion",
+  "cycle": 226,
+  "dut": null,
+  "golden": "core.scala:2059",
+  "reg": null,
+  "mode": "stuck_entry",
+  "facts": {
+   "last_retired_cycle": "226",
+   "last_recorded_cycle": "8419",
+   "stalled_cycles": "8193",
+   "rob_head": "11",
+   "rob_tail": "15",
+   "rob_state": "1",
+   "entries_valid": "3",
+   "entries_valid_and_busy": "2",
+   "mode_note": "head entry is valid and busy: issued, never written back"
+  },
+  "links": [
+   {
+    "depth": 0,
+    "signal": "rob.rob_bsy_11",
+    "value": "1",
+    "stopped": "221",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 2,
+    "signal": "rob.io_enq_valids_1",
+    "value": "0",
+    "stopped": "228",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 3,
+    "signal": "dis_fire_1",
+    "value": "0",
+    "stopped": "228",
+    "chisel": "core.scala:105:32",
+    "block": "Dispatch"
+   },
+   {
+    "depth": 4,
+    "signal": "rob.io_wb_resps_2_valid",
+    "value": "0",
+    "stopped": "223",
+    "chisel": "",
+    "block": "ROB"
+   },
+   {
+    "depth": 5,
+    "signal": "rob.rob_head",
+    "value": "11",
+    "stopped": "227",
+    "chisel": "rob.scala:227:29",
+    "block": "ROB"
+   },
+   {
+    "depth": 6,
+    "signal": "io_lsu_fencei_rdy",
+    "value": "0",
+    "stopped": "220",
+    "chisel": "",
+    "block": "LSU"
+   },
+   {
+    "depth": 7,
+    "signal": "rob.rob_val_1_11",
+    "value": "1",
+    "stopped": "221",
+    "chisel": "rob.scala:315:32",
+    "block": "ROB"
+   },
+   {
+    "depth": 8,
+    "signal": "rob.rob_bsy_1_11",
+    "value": "1",
+    "stopped": "221",
+    "chisel": "rob.scala:316:28",
+    "block": "ROB"
+   },
+   {
+    "depth": 9,
+    "signal": "lsu.stq_1_valid",
+    "value": "1",
+    "stopped": "227",
+    "chisel": "lsu.scala:218:16",
+    "block": "LSU"
+   },
+   {
+    "depth": 10,
+    "signal": "alu_exe_unit.ALUUnit.io_get_ftq_pc_entry_cfi_idx_valid",
+    "value": "0",
+    "stopped": "227",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 11,
+    "signal": "alu_exe_unit.io_get_ftq_pc_entry_cfi_idx_valid",
+    "value": "0",
+    "stopped": "227",
+    "chisel": "",
+    "block": "Execute"
+   },
+   {
+    "depth": 12,
+    "signal": "io_ifu_get_pc_0_entry_cfi_idx_valid",
+    "value": "0",
+    "stopped": "227",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 13,
+    "signal": "iregister_read.io_exe_reqs_2_bits_uop_rob_idx",
+    "value": "0",
+    "stopped": "222",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 14,
+    "signal": "iregister_read.io_exe_reqs_2_valid",
+    "value": "0",
+    "stopped": "222",
+    "chisel": "register-read.scala:34:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 15,
+    "signal": "iregister_read.rrd_uops_2_REG_rob_idx",
+    "value": "0",
+    "stopped": "221",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 16,
+    "signal": "iregister_read.rrd_uops_2_REG_fu_code",
+    "value": "0",
+    "stopped": "221",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 17,
+    "signal": "iregister_read.rrd_uops_2_REG_uopc",
+    "value": "0",
+    "stopped": "221",
+    "chisel": "register-read.scala:80:33",
+    "block": "RegRead"
+   },
+   {
+    "depth": 18,
+    "signal": "iregister_read.rrd_decode_unit_2.io_rrd_uop_fu_code",
+    "value": "0",
+    "stopped": "220",
+    "chisel": "func-unit-decode.scala:307:7",
+    "block": "RegRead"
+   },
+   {
+    "depth": 19,
+    "signal": "iregister_read.rrd_decode_unit_2.io_iss_uop_fu_code",
+    "value": "0",
+    "stopped": "220",
+    "chisel": "",
+    "block": "RegRead"
+   }
+  ],
+  "bug_file": "lsu.scala",
+  "bug_line": 592,
+  "bug_dir": "lsu",
+  "operator": "elsewhen_negate",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 191243,
+  "vcd_mb": 89,
+  "seconds": 16.1
+ },
+ {
+  "id": "14fa292d",
+  "stimulus": "rv64ui-p-add",
+  "kind": "pc",
+  "cycle": 242,
+  "dut": "0x10040",
+  "golden": "0x1005c",
+  "reg": null,
+  "mode": null,
+  "facts": {},
+  "links": [
+   {
+    "depth": 0,
+    "signal": "frontend.s0_vpc",
+    "value": "65736",
+    "chisel": "frontend.scala:167:23",
+    "block": "Frontend"
+   },
+   {
+    "depth": 1,
+    "signal": "frontend.io_cpu_sfence_valid",
+    "value": "0",
+    "chisel": "",
+    "block": "Frontend"
+   },
+   {
+    "depth": 2,
+    "signal": "frontend.f3_redirects_2",
+    "value": "0",
+    "chisel": "frontend.scala:538:11",
+    "block": "Frontend"
+   },
+   {
+    "depth": 3,
+    "signal": "frontend.s2_vpc",
+    "value": "65736",
+    "chisel": "frontend.scala:390:29",
+    "block": "Frontend"
+   },
+   {
+    "depth": 4,
+    "signal": "io_ifu_sfence_REG_valid",
+    "value": "0",
+    "chisel": "core.scala:571:31",
+    "block": "Frontend"
+   },
+   {
+    "depth": 5,
+    "signal": "nextSmall",
+    "value": "17",
+    "chisel": "Counters.scala:45:41",
+    "block": "Core"
+   },
+   {
+    "depth": 6,
+    "signal": "frontend.f3.io_enq_bits_pc",
+    "value": "65736",
+    "chisel": "",
+    "block": "Frontend"
+   }
+  ],
+  "bug_file": "tlb.scala",
+  "bug_line": 233,
+  "bug_dir": "lsu",
+  "operator": "dec_to_inc",
+  "baseline_passed": 0,
+  "signals": 29470,
+  "changes": 101190,
+  "vcd_mb": 12,
+  "seconds": 13.5
+ }
+]

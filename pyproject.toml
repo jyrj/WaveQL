@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "waveql"
+version = "0.1.0"
+description = "A queryable join of waveform, commit log, golden ISA trace and RTL source map, as a CHIA tool"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"   # ray==2.54.0 (via chialoops) ships no cp314 wheels
+license = "BSD-3-Clause"
+authors = [{ name = "Jayaraj Jayakumar", email = "jj8@ucsc.edu" }]
+keywords = ["hardware", "agents", "debugging", "waveform", "chia", "chipyard", "boom"]
+
+dependencies = [
+    "chialoops==1.0.1",
+    "pywellen==0.25.6",   # Rust `wellen` bindings: streaming VCD/FST parser
+    "duckdb==1.5.5",
+    "pyarrow==25.0.1",
+]
+
+[project.optional-dependencies]
+# The agent harness (Gemini on Vertex AI) and the multi-host verification queue.
+agents = ["google-genai==2.8.0", "google-auth==2.57.1", "requests==2.34.2"]
+analysis = ["numpy>=1.26", "pandas>=2.2", "matplotlib>=3.8", "scipy>=1.12"]
+test = ["pytest==9.0.3", "pytest-timeout>=2.3"]
+
+[project.scripts]
+# The loop IS the entry point; there is no separate CLI module.
+waveql-loop = "chia_waveql.loop:main"
+# The demo: one mutant in, one causal explanation out.
+waveql-explain = "waveql.explain_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: hits a real simulator or build; excluded from the fast unit suite",
+    "needs_chipyard: requires the built chipyard environment in thirdparty/",
+    "needs_vcd: requires a recorded VCD fixture",
+]

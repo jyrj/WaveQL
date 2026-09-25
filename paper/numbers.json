@@ -1,0 +1,1026 @@
+{
+ "FILE": 6,
+ "DIR": 11,
+ "MEDIAN": "5",
+ "LOST": 16,
+ "TOTAL": 685,
+ "EPISODES": 669,
+ "PAIRED": 111,
+ "FW": "0.179",
+ "FWLO": "0.117",
+ "FWHI": "0.245",
+ "FC": "0.217",
+ "FCLO": "0.147",
+ "FCHI": "0.289",
+ "NFW": 60,
+ "NW": 334,
+ "NFC": 73,
+ "NC": 335,
+ "LW": "93 / 334",
+ "LC": "116 / 335",
+ "TEW": "378k",
+ "TEC": "565k",
+ "TFW": "2,105k",
+ "TFC": "2,595k",
+ "DIFF": "-3.8",
+ "DLO": "-8.8",
+ "DHI": "+1.1",
+ "LDIFF": "-6.8",
+ "CW": "59 of 93",
+ "CC": "73 of 116",
+ "DIFF1": "+10.6",
+ "PAIRED1": 11,
+ "EPISODES1": 30,
+ "h1": {
+  "diff": -0.038288288288288286,
+  "diff_ci": [
+   -0.08783783783783784,
+   0.01051051051051051
+  ],
+  "waveql": 0.17867867867867868,
+  "control": 0.21696696696696696,
+  "waveql_ci": [
+   0.11711711711711711,
+   0.24474474474474475
+  ],
+  "control_ci": [
+   0.14714714714714713,
+   0.28903903903903905
+  ],
+  "paired": 111,
+  "episodes": 669,
+  "lost": 16,
+  "band": 0.1
+ },
+ "cost": {
+  "by_model": {
+   "gemini-2.5-pro": {
+    "episodes": 53,
+    "tokens": 11155598,
+    "usd": 27.61,
+    "usd_low": 13.94,
+    "usd_high": 41.28,
+    "basis": "ESTIMATE: no token split recorded"
+   },
+   "gemini-3.1-pro-preview": {
+    "episodes": 714,
+    "tokens": 325757978,
+    "usd": 835.83,
+    "usd_low": 809.43,
+    "usd_high": 862.23,
+    "basis": "recorded token split x catalog price for 645 episodes; 69 earlier ones estimated at the same 2.57 USD/M"
+   }
+  },
+  "model_total_usd": 863.44,
+  "range_usd": [
+   823.37,
+   903.5
+  ],
+  "output_share": null,
+  "blended_ref_usd_per_m": 2.5657898603846307
+ },
+ "tasks": [
+  {
+   "task": "b3bd38d7",
+   "kind": "wrong PC",
+   "bug": "core.scala:507",
+   "op": "regnext_drop",
+   "file": true,
+   "dir": true,
+   "waveql": "none, fixed, wrong, fixed",
+   "control": "none, no build, wrong, wrong"
+  },
+  {
+   "task": "55a43788",
+   "kind": "wrong value",
+   "bug": "fpu.scala:195",
+   "op": "when_negate",
+   "file": false,
+   "dir": true,
+   "waveql": "none, wrong, fixed",
+   "control": "fixed, fixed, none, fixed"
+  },
+  {
+   "task": "1f8aa100",
+   "kind": "hang/assert",
+   "bug": "issue-unit-age-ordered.scala:87",
+   "op": "gt_to_ge",
+   "file": false,
+   "dir": false,
+   "waveql": "none, wrong, none",
+   "control": "wrong, wrong, none"
+  },
+  {
+   "task": "c80f8bde",
+   "kind": "wrong value",
+   "bug": "lsu.scala:1112",
+   "op": "and_to_or",
+   "file": true,
+   "dir": true,
+   "waveql": "none, no build, none",
+   "control": "none, wrong, wrong"
+  },
+  {
+   "task": "ca3319d3",
+   "kind": "hang/assert",
+   "bug": "mshrs.scala:282",
+   "op": "handshake_drop_ready_lhs",
+   "file": false,
+   "dir": true,
+   "waveql": "none, wrong, wrong",
+   "control": "no build, wrong, wrong"
+  },
+  {
+   "task": "98598e5f",
+   "kind": "hang/assert",
+   "bug": "core.scala:1386",
+   "op": "mux_arm_swap",
+   "file": true,
+   "dir": true,
+   "waveql": "none, none, none",
+   "control": "none, wrong, none"
+  },
+  {
+   "task": "dc210e12",
+   "kind": "wrong value",
+   "bug": "functional-unit.scala:324",
+   "op": "mux_arm_swap",
+   "file": true,
+   "dir": true,
+   "waveql": "fixed, fixed, fixed",
+   "control": "none, none, wrong"
+  },
+  {
+   "task": "817f37e2",
+   "kind": "hang/assert",
+   "bug": "issue-slot.scala:133",
+   "op": "elsewhen_negate",
+   "file": false,
+   "dir": false,
+   "waveql": "none, none, wrong",
+   "control": "none, wrong, none"
+  },
+  {
+   "task": "1132ff87",
+   "kind": "wrong value",
+   "bug": "register-read.scala:176",
+   "op": "eq_to_ne",
+   "file": true,
+   "dir": true,
+   "waveql": "none, fixed, wrong",
+   "control": "none, wrong, wrong"
+  },
+  {
+   "task": "6ae5fde8",
+   "kind": "hang/assert",
+   "bug": "rename-stage.scala:198",
+   "op": "or_to_and",
+   "file": false,
+   "dir": false,
+   "waveql": "wrong, wrong, wrong",
+   "control": "no build, no build, no build"
+  },
+  {
+   "task": "f27b9c07",
+   "kind": "hang/assert",
+   "bug": "dcache.scala:108",
+   "op": "when_negate",
+   "file": false,
+   "dir": true,
+   "waveql": "none, none, none",
+   "control": "wrong, wrong, wrong"
+  },
+  {
+   "task": "a096a6d1",
+   "kind": "wrong value",
+   "bug": "dcache.scala:590",
+   "op": "mux_arm_swap",
+   "file": false,
+   "dir": true,
+   "waveql": "no build, wrong, none",
+   "control": "wrong, wrong, wrong"
+  },
+  {
+   "task": "e47efcc2",
+   "kind": "hang/assert",
+   "bug": "dcache.scala:749",
+   "op": "and_to_or",
+   "file": false,
+   "dir": true,
+   "waveql": "none, fixed, fixed",
+   "control": "fixed, fixed, fixed"
+  },
+  {
+   "task": "d5df30fa",
+   "kind": "hang/assert",
+   "bug": "lsu.scala:592",
+   "op": "elsewhen_negate",
+   "file": true,
+   "dir": true,
+   "waveql": "none, none, wrong",
+   "control": "none, wrong, wrong"
+  },
+  {
+   "task": "14fa292d",
+   "kind": "wrong PC",
+   "bug": "tlb.scala:233",
+   "op": "dec_to_inc",
+   "file": false,
+   "dir": false,
+   "waveql": "none, wrong, wrong",
+   "control": "none, none, fixed"
+  }
+ ],
+ "heldout": {
+  "static_files": [
+   "core.scala",
+   "rob.scala",
+   "functional-unit.scala",
+   "register-read.scala",
+   "lsu.scala"
+  ],
+  "static_dirs": [
+   "exu",
+   "execution-units",
+   "register-read",
+   "lsu"
+  ],
+  "draw1": {
+   "n": 15,
+   "file": 6,
+   "dir": 11,
+   "static_file": 6,
+   "static_dir": 12,
+   "perm_file": 0.2857142857142857,
+   "perm_dir": 0.5190476190476191,
+   "median_named": 5
+  },
+  "heldout": {
+   "n": 96,
+   "file": 34,
+   "dir": 66,
+   "static_file": 45,
+   "static_dir": 87,
+   "perm_file": 0.27708333333333335,
+   "perm_dir": 0.5158991228070176,
+   "median_named": 5.0
+  }
+ },
+ "corpus": {
+  "draw1": {
+   "screened": 40,
+   "killed": 15,
+   "tasks": 15,
+   "divergence": 7,
+   "assertion": 8,
+   "other_kill": 0,
+   "survived": 23,
+   "build_failed": 1,
+   "invalid": 1,
+   "error": 0
+  },
+  "draw2": {
+   "screened": 109,
+   "killed": 54,
+   "tasks": 54,
+   "divergence": 24,
+   "assertion": 30,
+   "other_kill": 0,
+   "survived": 52,
+   "build_failed": 3,
+   "invalid": 0,
+   "error": 0
+  },
+  "draw3": {
+   "screened": 99,
+   "killed": 42,
+   "tasks": 42,
+   "divergence": 15,
+   "assertion": 27,
+   "other_kill": 0,
+   "survived": 55,
+   "build_failed": 2,
+   "invalid": 0,
+   "error": 0
+  }
+ },
+ "classes": [
+  {
+   "cls": "boundary-off-by-one",
+   "screened": 30,
+   "killed": 3,
+   "paired": 3,
+   "waveql": 0.2222222222222222,
+   "control": 0.3333333333333333
+  },
+  {
+   "cls": "comparison-inversion",
+   "screened": 35,
+   "killed": 23,
+   "paired": 23,
+   "waveql": 0.21739130434782608,
+   "control": 0.25
+  },
+  {
+   "cls": "condition-logic",
+   "screened": 35,
+   "killed": 22,
+   "paired": 22,
+   "waveql": 0.30303030303030304,
+   "control": 0.42424242424242425
+  },
+  {
+   "cls": "constant-flip",
+   "screened": 34,
+   "killed": 12,
+   "paired": 12,
+   "waveql": 0.13888888888888887,
+   "control": 0.25
+  },
+  {
+   "cls": "handshake-protocol",
+   "screened": 35,
+   "killed": 11,
+   "paired": 11,
+   "waveql": 0.21212121212121213,
+   "control": 0.21212121212121213
+  },
+  {
+   "cls": "index-arithmetic",
+   "screened": 9,
+   "killed": 4,
+   "paired": 4,
+   "waveql": 0.0,
+   "control": 0.08333333333333333
+  },
+  {
+   "cls": "pipeline-depth",
+   "screened": 35,
+   "killed": 12,
+   "paired": 12,
+   "waveql": 0.06944444444444443,
+   "control": 0.027777777777777776
+  },
+  {
+   "cls": "select-inversion",
+   "screened": 35,
+   "killed": 24,
+   "paired": 24,
+   "waveql": 0.1111111111111111,
+   "control": 0.08333333333333333
+  }
+ ],
+ "tokens": {
+  "tasks": 111,
+  "ratio": 0.6700637133560002,
+  "lo": 0.5981249087560334,
+  "hi": 0.7518354747908587,
+  "waveql_mean": 378652.97222222225,
+  "control_mean": 565099.951951952,
+  "per_task": [
+   [
+    259415,
+    369526
+   ],
+   [
+    766044,
+    461662
+   ],
+   [
+    594711,
+    986124
+   ],
+   [
+    1205304,
+    1137183
+   ],
+   [
+    715324,
+    472921
+   ],
+   [
+    484716,
+    463645
+   ],
+   [
+    581915,
+    210369
+   ],
+   [
+    538167,
+    513804
+   ],
+   [
+    596129,
+    1134005
+   ],
+   [
+    1025338,
+    222429
+   ],
+   [
+    446796,
+    327541
+   ],
+   [
+    495361,
+    285954
+   ],
+   [
+    551416,
+    388930
+   ],
+   [
+    712637,
+    270227
+   ],
+   [
+    722081,
+    376623
+   ],
+   [
+    478727,
+    365215
+   ],
+   [
+    770911,
+    237364
+   ],
+   [
+    317111,
+    364070
+   ],
+   [
+    311988,
+    364146
+   ],
+   [
+    367882,
+    573690
+   ],
+   [
+    687408,
+    314480
+   ],
+   [
+    475212,
+    491316
+   ],
+   [
+    475452,
+    628206
+   ],
+   [
+    695207,
+    552091
+   ],
+   [
+    583622,
+    498838
+   ],
+   [
+    663439,
+    531943
+   ],
+   [
+    931082,
+    443320
+   ],
+   [
+    419025,
+    387117
+   ],
+   [
+    505226,
+    915087
+   ],
+   [
+    281999,
+    134061
+   ],
+   [
+    659272,
+    327713
+   ],
+   [
+    352633,
+    42456
+   ],
+   [
+    241435,
+    429507
+   ],
+   [
+    751603,
+    434335
+   ],
+   [
+    1174161,
+    596470
+   ],
+   [
+    249729,
+    108841
+   ],
+   [
+    266177,
+    421350
+   ],
+   [
+    1805092,
+    338917
+   ],
+   [
+    52606,
+    330444
+   ],
+   [
+    1759410,
+    833802
+   ],
+   [
+    329291,
+    290366
+   ],
+   [
+    591586,
+    538203
+   ],
+   [
+    127767,
+    269062
+   ],
+   [
+    596508,
+    535647
+   ],
+   [
+    57532,
+    198360
+   ],
+   [
+    636058,
+    319906
+   ],
+   [
+    360368,
+    334189
+   ],
+   [
+    620958,
+    405609
+   ],
+   [
+    109027,
+    106141
+   ],
+   [
+    539197,
+    269606
+   ],
+   [
+    801295,
+    257460
+   ],
+   [
+    54044,
+    135126
+   ],
+   [
+    487169,
+    462447
+   ],
+   [
+    522573,
+    425932
+   ],
+   [
+    603168,
+    269449
+   ],
+   [
+    460721,
+    224034
+   ],
+   [
+    518145,
+    394325
+   ],
+   [
+    163597,
+    346631
+   ],
+   [
+    309191,
+    277829
+   ],
+   [
+    446647,
+    497718
+   ],
+   [
+    323258,
+    242660
+   ],
+   [
+    235833,
+    83266
+   ],
+   [
+    768905,
+    324113
+   ],
+   [
+    1114356,
+    394978
+   ],
+   [
+    122041,
+    92955
+   ],
+   [
+    317117,
+    291193
+   ],
+   [
+    114701,
+    193032
+   ],
+   [
+    622785,
+    230434
+   ],
+   [
+    847363,
+    340943
+   ],
+   [
+    496056,
+    203393
+   ],
+   [
+    441390,
+    608871
+   ],
+   [
+    540716,
+    294721
+   ],
+   [
+    579853,
+    205159
+   ],
+   [
+    622914,
+    517275
+   ],
+   [
+    697956,
+    317192
+   ],
+   [
+    90095,
+    281190
+   ],
+   [
+    461371,
+    308331
+   ],
+   [
+    456193,
+    188251
+   ],
+   [
+    597874,
+    438282
+   ],
+   [
+    1483256,
+    584859
+   ],
+   [
+    875678,
+    412442
+   ],
+   [
+    726766,
+    690597
+   ],
+   [
+    532544,
+    550388
+   ],
+   [
+    812790,
+    366005
+   ],
+   [
+    91108,
+    259958
+   ],
+   [
+    681960,
+    306712
+   ],
+   [
+    590486,
+    619592
+   ],
+   [
+    572076,
+    751385
+   ],
+   [
+    456774,
+    239664
+   ],
+   [
+    840652,
+    289006
+   ],
+   [
+    337451,
+    382750
+   ],
+   [
+    69940,
+    65540
+   ],
+   [
+    1032571,
+    382020
+   ],
+   [
+    271141,
+    210913
+   ],
+   [
+    653644,
+    75254
+   ],
+   [
+    104406,
+    400180
+   ],
+   [
+    947136,
+    458668
+   ],
+   [
+    949956,
+    361129
+   ],
+   [
+    805518,
+    381489
+   ],
+   [
+    568824,
+    354519
+   ],
+   [
+    507176,
+    365499
+   ],
+   [
+    59403,
+    66213
+   ],
+   [
+    441084,
+    224456
+   ],
+   [
+    692332,
+    353989
+   ],
+   [
+    318770,
+    305296
+   ],
+   [
+    1109603,
+    370555
+   ],
+   [
+    599049,
+    362594
+   ],
+   [
+    460752,
+    527697
+   ],
+   [
+    1829401,
+    560297
+   ],
+   [
+    35454,
+    64201
+   ],
+   [
+    511012,
+    286615
+   ]
+  ],
+  "below": 82
+ },
+ "overlap": 6,
+ "behaviour": {
+  "waveql": {
+   "n": 334,
+   "proposed": 0.5718562874251497,
+   "capped": 0.7664670658682635,
+   "median_queries": 31.0,
+   "top_tools": [
+    [
+     "find_signals",
+     1814
+    ],
+    [
+     "read_source",
+     1375
+    ],
+    [
+     "search_source",
+     1187
+    ],
+    [
+     "state_at",
+     1133
+    ],
+    [
+     "trace_signal",
+     854
+    ]
+   ],
+   "why_share": 0.027670862373868718,
+   "why_episodes": 0.218562874251497
+  },
+  "control": {
+   "n": 335,
+   "proposed": 0.7074626865671642,
+   "capped": 0.5492537313432836,
+   "median_queries": 31,
+   "top_tools": [
+    [
+     "search_source",
+     3038
+    ],
+    [
+     "read_source",
+     2030
+    ],
+    [
+     "grep",
+     1426
+    ],
+    [
+     "propose_fix",
+     481
+    ],
+    [
+     "read",
+     439
+    ]
+   ],
+   "why_share": 0.0,
+   "why_episodes": 0.0
+  }
+ },
+ "by_kind": {
+  "divergence": {
+   "tasks": 46,
+   "waveql": 0.09782608695652174,
+   "control": 0.11050724637681159,
+   "tok_waveql": 440905.2158273381,
+   "tok_control": 743891.2642857142
+  },
+  "assertion": {
+   "tasks": 65,
+   "waveql": 0.2358974358974359,
+   "control": 0.2923076923076923,
+   "tok_waveql": 333388.58461538464,
+   "tok_control": 437295.5487179487
+  }
+ },
+ "patches_verified": 426,
+ "tokens_per_fix": {
+  "waveql": 2104943.316666667,
+  "control": 2594759.02739726
+ },
+ "transcripts": {
+  "scored": 669,
+  "own": 667
+ },
+ "windows": {
+  "per_draw": {
+   "draw1": [
+    15,
+    15
+   ],
+   "draw2": [
+    50,
+    51
+   ],
+   "draw3": [
+    30,
+    34
+   ]
+  },
+  "ok": 95,
+  "n": 100,
+  "later_ok": 80,
+  "later_n": 85
+ },
+ "lost_by_arm": {
+  "waveql": 7,
+  "control": 9
+ },
+ "trajectory": [
+  {
+   "label": "first draw",
+   "paired": 11,
+   "episodes": 30,
+   "diff": 0.10606060606060605,
+   "lo": 0.0,
+   "hi": 0.25757575757575757,
+   "diff_s": "+10.6"
+  },
+  {
+   "label": "+ seeds 2-3",
+   "paired": 15,
+   "episodes": 93,
+   "diff": 0.05,
+   "lo": -0.10555555555555557,
+   "hi": 0.22777777777777777,
+   "diff_s": "+5.0"
+  },
+  {
+   "label": "+ draw 2",
+   "paired": 69,
+   "episodes": 417,
+   "diff": -0.06159420289855073,
+   "lo": -0.1328502415458937,
+   "hi": 0.007246376811594201,
+   "diff_s": "-6.2"
+  },
+  {
+   "label": "+ draw 3",
+   "paired": 111,
+   "episodes": 669,
+   "diff": -0.038288288288288286,
+   "lo": -0.08783783783783784,
+   "hi": 0.01051051051051051,
+   "diff_s": "-3.8"
+  }
+ ],
+ "cloud": {
+  "vms": [
+   {
+    "name": "vm1",
+    "zone": "us-central1-c",
+    "type": "n2d-standard-96",
+    "disk_gb": 600,
+    "hours": 3.44,
+    "usd_per_hour": 4.195,
+    "usd": 14.44,
+    "status": "TERMINATED"
+   },
+   {
+    "name": "vm2",
+    "zone": "us-central1-b",
+    "type": "n2d-standard-96",
+    "disk_gb": 500,
+    "hours": 3.2,
+    "usd_per_hour": 4.172,
+    "usd": 13.34,
+    "status": "STOPPING"
+   },
+   {
+    "name": "vm3",
+    "zone": "us-central1-b",
+    "type": "n2d-standard-96",
+    "disk_gb": 500,
+    "hours": 2.8,
+    "usd_per_hour": 4.172,
+    "usd": 11.68,
+    "status": "STOPPING"
+   },
+   {
+    "name": "vm4",
+    "zone": "us-central1-b",
+    "type": "n2d-standard-96",
+    "disk_gb": 500,
+    "hours": 2.52,
+    "usd_per_hour": 4.172,
+    "usd": 10.5,
+    "status": "STOPPING"
+   }
+  ],
+  "vm_hours": 11.96,
+  "total_usd": 49.96,
+  "as_of": "2026-09-25T07:25:14+00:00",
+  "basis": "Cloud Billing catalog list prices, Americas; lifetime from creationTimestamp"
+ }
+}

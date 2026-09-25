@@ -1,0 +1,20 @@
+diff --git a/scripts/build-setup.sh b/scripts/build-setup.sh
+index 709fc4db..5a0e4cc4 100755
+--- a/scripts/build-setup.sh
++++ b/scripts/build-setup.sh
+@@ -186,7 +186,14 @@ conda environment or \`source env.sh\` and skip this step with \`-s 1\`." >&2
+         exit_if_last_command_failed
+     fi
+     SYS_GLIBC=$(ldd --version | awk '/ldd/{print $NF}')
+-    DEFAULT_GLIBC=$(grep -i "sysroot_linux-64=" conda-reqs/chipyard-base.yaml | awk -F= '{print $2}')
++    # WaveQL patch: strip the trailing YAML comment (upstream keeps it, so the
++    # comparison below never matches on any host) and keep the pinned sysroot
++    # rather than rewriting it to the host's glibc. conda-forge publishes no
++    # sysroot for a modern host glibc, and a lower sysroot is the portable
++    # target anyway.
++    DEFAULT_GLIBC=$(grep -i "sysroot_linux-64=" conda-reqs/chipyard-base.yaml | awk -F= '{print $2}' | awk '{print $1}')
++    echo "[waveql] host glibc=$SYS_GLIBC pinned sysroot=$DEFAULT_GLIBC (keeping the pin)"
++    SYS_GLIBC="$DEFAULT_GLIBC"
+     if [ "$SYS_GLIBC" != "$DEFAULT_GLIBC" ]; then
+         # replace the glibc version
+         sed -i.bak "s/^\([[:space:]]*-\s*sysroot_linux-64=\).*/\1$SYS_GLIBC/" conda-reqs/chipyard-base.yaml

@@ -1,0 +1,55 @@
+mutant     bug                          window           last commit   needs     MB  verdict
+------------------------------------------------------------------------------------------------
+f1eaf8fa   functional-unit.scala        1786..2298          div@2104           12.5  DIVERGENCE covered
+db515fc7   rename-maptable.scala        29..51                    39    8231    5.0  assert (not a hang)
+48e99922   lsu.scala                    10247..19228           11035   19227  107.7  HANG covered
+13e73665   mshrs.scala                  1490..10609             2416   10608  124.9  HANG covered
+cb72ee29   core.scala                   29..541              div@214           11.9  DIVERGENCE covered
+830cda3d   rename-stage.scala           29..541               div@65           12.3  DIVERGENCE covered
+b1b2ac6a   lsu.scala                    29..8419                 226    8418   89.3  HANG covered
+a6b30207   mshrs.scala                  1489..2425              2424   10616   23.7  assert (not a hang)
+f3e7002a   execution-unit.scala         29..10182               1989   10181  112.5  HANG covered
+1dad5b6f   dcache.scala                 1653..10665             2472   10664  132.2  HANG covered
+9fc0e8dc   dcache.scala                 29..70                    67    8259    5.3  assert (not a hang)
+221dca65   mshrs.scala                  1490..10609             2416   10608  124.9  HANG covered
+d07eae80   dcache.scala                 2078..2563          div@2191           14.7  DIVERGENCE covered
+92cbfc6a   lsu.scala                    1243..1755          div@1568           15.2  DIVERGENCE covered
+133efb96   mshrs.scala                  27163..27672       div@27263           20.7  DIVERGENCE covered
+ad293c10   execution-unit.scala         29..9741                1548    9740  105.7  HANG covered
+31595473   lsu.scala                    1569..2081          div@1688           18.4  DIVERGENCE covered
+7e70d75c   mshrs.scala                  11364..11876       div@11582           16.9  DIVERGENCE covered
+e950652b   dcache.scala                 1587..10660             2467   10659  123.5  HANG covered
+cf07ba98   lsu.scala                    29..222                  214    8406    7.5  assert (not a hang)
+c26d43ba   mshrs.scala                  11364..11876       div@11582           16.9  DIVERGENCE covered
+449f1892   mshrs.scala                  124820..125332    div@124900           13.0  DIVERGENCE covered
+874f71ca   functional-unit.scala        29..541               div@78           13.0  DIVERGENCE covered
+9e8e63a4   lsu.scala                    29..541              div@242           12.4  DIVERGENCE covered
+a37a5a1d   mshrs.scala                  1223..1735          div@1536           15.2  DIVERGENCE covered
+f17242aa   rob.scala                    23..26                div@21            4.7  divergence MISSED
+5a092c1f   dcache.scala                 4636..4985              4984   13176   18.8  assert (not a hang)
+9411445f   lsu.scala                    1109..1621          div@1525           12.6  DIVERGENCE covered
+ea7d160f   lsu.scala                    29..9691                1498    9690  105.8  HANG covered
+ea9f5cf5   mshrs.scala                  110758..119502        111309  119501  127.0  HANG covered
+fe9896ac   lsu.scala                    29..8419                 226    8418   89.3  HANG covered
+1ef1217f   mshrs.scala                  29..8419                 226    8418  100.6  HANG covered
+d4bfb753   lsu.scala                    29..8451                 258    8450   89.7  HANG covered
+4d554548   lsu.scala                    1568..2080          div@1703           12.6  DIVERGENCE covered
+b500be7e   issue-unit.scala             1653..10476             2283   10475  109.2  HANG covered
+782ccc85   rob.scala                    29..36                    33    8225    4.8  assert (not a hang)
+468e7978   dcache.scala                 1107..1619          div@1542           12.2  DIVERGENCE covered
+d3c1e8ad   lsu.scala                    29..8419                 226    8418  104.7  HANG covered
+85ee8927   dcache.scala                 1559..2460              2459   10651   23.7  assert (not a hang)
+e54a8996   dcache.scala                 1107..1619          div@1583           12.0  DIVERGENCE covered
+0aabdc03   lsu.scala                    1058..2359              2358   10550   28.2  assert (not a hang)
+fbc3df9e   register-read.scala          11034..11546       div@11203           16.8  DIVERGENCE covered
+b1e4954f   tlb.scala                    1087..1599          div@1519           13.2  DIVERGENCE covered
+e71c5225   dcache.scala                 1587..10660             2467   10659  123.5  HANG covered
+8a71e11a   dcache.scala                 29..8419                 226    8418   89.3  HANG covered
+11bdebee   lsu.scala                    1109..1621          div@1524           12.7  DIVERGENCE covered
+8f15c56d   mshrs.scala                  29..8419                 226    8418   89.3  HANG covered
+cffdeac0   decode.scala                 29..541              div@255           12.4  DIVERGENCE covered
+3002f923   register-read.scala          1086..1598          div@1489           12.5  DIVERGENCE covered
+c36b8489   dcache.scala                 1223..1735          div@1536           14.4  DIVERGENCE covered
+c1eb7448   lsu.scala                    29..8452                 259    8451   89.7  HANG covered
+
+50/51 dumps contain their failure

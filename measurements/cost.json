@@ -1,0 +1,27 @@
+{
+ "by_model": {
+  "gemini-2.5-pro": {
+   "episodes": 53,
+   "tokens": 11155598,
+   "usd": 27.61,
+   "usd_low": 13.94,
+   "usd_high": 41.28,
+   "basis": "ESTIMATE: no token split recorded"
+  },
+  "gemini-3.1-pro-preview": {
+   "episodes": 714,
+   "tokens": 325757978,
+   "usd": 835.83,
+   "usd_low": 809.43,
+   "usd_high": 862.23,
+   "basis": "recorded token split x catalog price for 645 episodes; 69 earlier ones estimated at the same 2.57 USD/M"
+  }
+ },
+ "model_total_usd": 863.44,
+ "range_usd": [
+  823.37,
+  903.5
+ ],
+ "output_share": null,
+ "blended_ref_usd_per_m": 2.5657898603846307
+}

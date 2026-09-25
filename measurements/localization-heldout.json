@@ -1,0 +1,37 @@
+{
+ "test_set": "killed tasks of draws 2 and 3, unseen when the localizer was fixed",
+ "frozen_files_sha256": {
+  "src/waveql/tool/api.py": "58e9941f7a9d170955bdcd8a0cd7724bbc86cadbac62030da4b6b7e6aaae02fa",
+  "src/waveql/ingest/netlist.py": "4767fcb2a4a8d818e04409904d144766d07b56f55f942ba7bf5dbfa0a27f3317",
+  "src/waveql/ingest/explain.py": "a36c04894f2f614fe2e983abfb4715f6f9918ca3067d1355598327aa80fcb5a3",
+  "src/waveql/ingest/srcmap.py": "ee7d8c15f0e3c8b5f053c1944fcbeb2b50d0cc4443e52a822f7753caeec0c5eb",
+  "src/waveql/ingest/wave.py": "e0a13d31d2da3eabe5fa03ff3dd2e2d1f24ec73b51b5bfdaadee2bf83b0eff36",
+  "src/waveql/store/store.py": "40c9d64f3581d11110a6ce4f8408573ddfa55a3b54de1910542fa424feffad86",
+  "src/waveql/store/schema.sql": "f3ccdf54453ef175160573280ece8d4fa6f3fde415952240a8b2110be3573c82",
+  "src/waveql/corpus/task.py": "9f7728494475889b15407ba50f8e254beaa40fb3224778229af32756f7f6f065",
+  "src/waveql/corpus/capture.py": "3cde4db3b71791de3896b2605df3d5d0f6403e6b7dc00dbbc9f4b11236ad44bb",
+  "scripts/run/trace_eval.py": "06ea1739442ed41501a8133f3d5369acebe251e6976a4915045fb843d2efe0d6"
+ },
+ "baseline_static_files": {
+  "rule": "the K most frequently named files in the FIRST draw's chains, K = first-draw median chain size",
+  "K": 5,
+  "list": [
+   "core.scala",
+   "rob.scala",
+   "functional-unit.scala",
+   "register-read.scala",
+   "lsu.scala"
+  ]
+ },
+ "baseline_static_dirs": {
+  "rule": "the K most frequently named directories in the first draw, K = first-draw median number of distinct directories per chain",
+  "K": 4,
+  "list": [
+   "exu",
+   "execution-units",
+   "register-read",
+   "lsu"
+  ]
+ },
+ "baseline_permutation": "P(defect file of task i in the chain of task j), i != j, within the second draw"
+}

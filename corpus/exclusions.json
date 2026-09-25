@@ -1,0 +1,482 @@
+[
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 257,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 265,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 299,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 300,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 303,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 304,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 341,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 342,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 343,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 344,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 345,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 346,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 347,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 348,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 363,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 378,
+    "reason": "HPM counter plumbing"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 411,
+    "reason": "the cycle counter this project joins on: mutating it corrupts the measuring instrument"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 723,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 724,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 725,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 726,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 732,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 733,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 734,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 741,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 742,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 743,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 746,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 747,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 748,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 753,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 754,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 755,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 758,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 759,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 760,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 792,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 792,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 794,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 794,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 794,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 794,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 804,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 805,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 834,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 834,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 837,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 944,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 944,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 945,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 945,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 946,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 946,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 969,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 970,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 971,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 971,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 972,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 972,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 973,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 973,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 974,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 974,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 995,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 995,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 996,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 996,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 996,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 997,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 997,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 997,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 998,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 998,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1014,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1016,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1019,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1124,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1125,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1127,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1130,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1133,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1165,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1182,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1183,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1184,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1185,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1639,
+    "reason": "store-drain throttle heuristic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1639,
+    "reason": "store-drain throttle heuristic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1641,
+    "reason": "store-drain throttle heuristic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1641,
+    "reason": "store-drain throttle heuristic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/core.scala",
+    "line": 1641,
+    "reason": "store-drain throttle heuristic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/rename/rename-stage.scala",
+    "line": 152,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/rename/rename-stage.scala",
+    "line": 153,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/rob.scala",
+    "line": 446,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/rob.scala",
+    "line": 473,
+    "reason": "TMA top-down analysis counters and their control logic"
+  },
+  {
+    "path": "generators/boom/src/main/scala/v3/exu/rob.scala",
+    "line": 478,
+    "reason": "TMA top-down analysis counters and their control logic"
+  }
+]

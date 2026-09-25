@@ -1,0 +1,39 @@
+mutant     bug                          window           last commit   needs     MB  verdict
+------------------------------------------------------------------------------------------------
+75b6e402   core.scala                   21849..22361       div@21881           25.6  DIVERGENCE covered
+8cd77a10   dcache.scala                 1634..2470              2469   10661   24.4  assert (not a hang)
+abb3f96c   lsu.scala                    29..8419                 226    8418   89.3  HANG covered
+d9f881ad   dcache.scala                 1114..1626          div@1608           12.2  DIVERGENCE covered
+af829782   fpu.scala                    1110..1622          div@1560           12.3  DIVERGENCE covered
+665bada5   rob.scala                    29..180                  172    8364    6.8  assert (not a hang)
+46571e6f   lsu.scala                    1569..2081          div@1688           18.4  DIVERGENCE covered
+5e0780a6   fpu.scala                    10952..11427       div@11113           14.7  DIVERGENCE covered
+550e6d71   rob.scala                    29..1689                1688    9880   27.3  assert (not a hang)
+27e4115b   functional-unit.scala        1793..2305          div@2139           13.9  DIVERGENCE covered
+1eb1eaf2   functional-unit.scala        29..541              div@233           11.6  DIVERGENCE covered
+85ee8927   dcache.scala                 1559..2460              2459   10651   23.7  assert (not a hang)
+f3bfc935   dcache.scala                 1513..2025          div@1646           18.0  DIVERGENCE covered
+9fed745c   lsu.scala                    29..250                  250    8442    8.0  assert (not a hang)
+9f6fa557   core.scala                   252..10495              2302   10494  116.4  HANG covered
+c052b65a   dcache.scala                 29..10295               2102   10294  139.1  HANG covered
+bb941277   lsu.scala                    29..222                  214    8406    7.5  assert (not a hang)
+8735fdf3   lsu.scala                    1759..2271          div@1877           12.3  DIVERGENCE covered
+3c35540c   fp-pipeline.scala            20854..21284           21284   29476   18.2  assert (not a hang)
+4e2a0ef8   lsu.scala                    29..237                  226    8418    7.8  assert (not a hang)
+d3a1a352   lsu.scala                    29..8232                  39    8231   89.8  HANG covered
+255a8bc8   fp-pipeline.scala            10145..19104           10911   19103  105.1  HANG covered
+5a724302   dcache.scala                 10274..11169           11165   19357   24.9  assert (not a hang)
+b6340449   mshrs.scala                  1490..10609             2416   10608  124.9  HANG covered
+c0b73946   core.scala                   29..485               div@27           10.7  divergence MISSED
+f25b933d   dcache.scala                 1531..2449              2448   10640   23.9  assert (not a hang)
+899c3e3c   lsu.scala                    29..226                  226    8418    7.6  assert (not a hang)
+26648084   decode.scala                 29..541               div@27           10.1  divergence MISSED
+17e9a9c2   issue-slot.scala             29..541               div@27           10.1  divergence MISSED
+1e7684ea   lsu.scala                    1764..2276          div@1961           15.1  DIVERGENCE covered
+5db95794   mshrs.scala                  29..1951                1951   10143   36.8  assert (not a hang)
+51209679   decode.scala                 29..218                  214    8406    7.4  assert (not a hang)
+2c943e69   rob.scala                    29..182                  172    8364    6.8  assert (not a hang)
+96f99234   dcache.scala                 29..8419                 226    8418   89.3  HANG covered
+2d959e74   execution-unit.scala         27..539               div@25           10.2  divergence MISSED
+
+31/35 dumps contain their failure

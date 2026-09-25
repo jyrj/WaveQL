@@ -1,0 +1,19 @@
+{
+ "recorded_at_utc": "2026-09-25T06:41:47+00:00",
+ "defect": "sample_class_balanced drew from a pool in filesystem iteration order, which differs between machines and changes when a file is atomically rewritten; the draw-2 exclusion list recomputed on another machine matched 39 of draw 2's 109 mutants",
+ "rule": "a mutant screened in an earlier draw keeps its FIRST screening and episodes; every later-draw row for it (screen, agents, verdicts, localization) is excluded from analysis",
+ "later_draw_duplicates": {
+  "draw3": [
+   "24f5acaacfca",
+   "35dee1237288",
+   "85ee8927389d",
+   "8b32b1390f10",
+   "923928252872",
+   "b427f5cfe424"
+  ]
+ },
+ "draw1_overlaps": {
+  "draw2": [],
+  "draw3": []
+ }
+}

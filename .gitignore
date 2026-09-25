@@ -1,0 +1,15 @@
+# toolchains and third-party checkouts (fetched by scripts/setup, scripts/build)
+thirdparty/
+tools/
+# working state: worker checkouts, logs, netlist snapshot, scratch
+var/
+# per-mutant simulation work (VCDs, cosim logs) and repair-verification builds
+corpus/work/
+corpus/fix/
+# local credentials and settings
+configs/gcp.env
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/

@@ -1,0 +1,48 @@
+{
+ "vms": [
+  {
+   "name": "vm1",
+   "zone": "us-central1-c",
+   "type": "n2d-standard-96",
+   "disk_gb": 600,
+   "hours": 3.44,
+   "usd_per_hour": 4.195,
+   "usd": 14.44,
+   "status": "TERMINATED"
+  },
+  {
+   "name": "vm2",
+   "zone": "us-central1-b",
+   "type": "n2d-standard-96",
+   "disk_gb": 500,
+   "hours": 3.2,
+   "usd_per_hour": 4.172,
+   "usd": 13.34,
+   "status": "STOPPING"
+  },
+  {
+   "name": "vm3",
+   "zone": "us-central1-b",
+   "type": "n2d-standard-96",
+   "disk_gb": 500,
+   "hours": 2.8,
+   "usd_per_hour": 4.172,
+   "usd": 11.68,
+   "status": "STOPPING"
+  },
+  {
+   "name": "vm4",
+   "zone": "us-central1-b",
+   "type": "n2d-standard-96",
+   "disk_gb": 500,
+   "hours": 2.52,
+   "usd_per_hour": 4.172,
+   "usd": 10.5,
+   "status": "STOPPING"
+  }
+ ],
+ "vm_hours": 11.96,
+ "total_usd": 49.96,
+ "as_of": "2026-09-25T07:25:14+00:00",
+ "basis": "Cloud Billing catalog list prices, Americas; lifetime from creationTimestamp"
+}

@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: pip install -e '.[test]'
+      - name: Test
+        run: pytest -q
+
+  paper:
+    name: Reproduce the paper from the measurements
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install
+        run: |
+          pip install -e .
+          sudo apt-get update -q && sudo apt-get install -y -q poppler-utils
+          curl -sSL https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz \
+            | tar -xJ --strip-components=1 -C /usr/local/bin typst-x86_64-unknown-linux-musl/typst
+          typst --version
+      - name: Every scored cell accounted for
+        run: python scripts/check/final_integrity.py
+      - name: Rebuild numbers, showcase page and PDF
+        run: PYTHON=python scripts/run/build_all.sh
+      - name: The recorded numbers reproduce exactly
+        run: git diff --exit-code paper/numbers.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper
+          path: paper/waveql-paper.pdf

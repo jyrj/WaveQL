@@ -1,0 +1,403 @@
+<title>WaveQL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+:root{
+  --paper:#ECEFF2; --panel:#F8F9FB; --ink:#17202B; --muted:#586575; --rule:#CDD4DC;
+  --grid:#DFE4EA; --trace:#2B5C8A; --trace-2:#2B5C8A22; --cursor:#B8235A;
+  --cursor-2:#B8235A1c; --ok:#2E7652; --ok-2:#2E765222; --bad:#A33A2C; --bad-2:#A33A2C1f;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --paper:#0F141B; --panel:#161D27; --ink:#DCE3EA; --muted:#8C98A6; --rule:#2A3441;
+  --grid:#1F2833; --trace:#79AEE0; --trace-2:#79AEE026; --cursor:#EE6A96;
+  --cursor-2:#EE6A961f; --ok:#5DBB8B; --ok-2:#5DBB8B22; --bad:#E07A68; --bad-2:#E07A681f;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0F141B; --panel:#161D27; --ink:#DCE3EA; --muted:#8C98A6; --rule:#2A3441;
+  --grid:#1F2833; --trace:#79AEE0; --trace-2:#79AEE026; --cursor:#EE6A96;
+  --cursor-2:#EE6A961f; --ok:#5DBB8B; --ok-2:#5DBB8B22; --bad:#E07A68; --bad-2:#E07A681f;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:17px/1.6 var(--body);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:grid;gap:56px}
+h1,h2,h3,.label{font-family:var(--display);text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,38px);font-weight:600;letter-spacing:.01em;line-height:1.05}
+h3{font-size:21px;font-weight:600}
+p{margin:0;max-width:66ch}
+.label{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.mono,code{font-family:var(--mono);font-size:.84em}
+section{display:grid;gap:18px}
+.lede{font-size:19px;color:var(--ink)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--cursor);outline-offset:2px}
+
+/* title block, drawn like the one on an engineering drawing */
+.tb{border:1.5px solid var(--ink);display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+.tb-name{padding:20px 22px;border-right:1.5px solid var(--ink);display:grid;gap:6px;align-content:end}
+.tb-name h1{font-size:clamp(56px,11vw,104px);font-weight:700;line-height:.86;letter-spacing:-.01em}
+.tb-name .sub{font-family:var(--display);font-size:clamp(19px,2.6vw,24px);font-weight:500;color:var(--muted)}
+.tb-cells{display:grid}
+.tb-cell{padding:9px 14px;border-bottom:1px solid var(--rule);display:grid;gap:1px}
+.tb-cell:last-child{border-bottom:0}
+.tb-cell b{font-family:var(--mono);font-weight:600;font-size:14px}
+.tb-foot{grid-column:1/-1;border-top:1.5px solid var(--ink);padding:16px 22px;display:grid;gap:10px}
+.thesis{font-size:clamp(19px,2.3vw,22px);line-height:1.45}
+.thesis em{font-style:italic;color:var(--cursor)}
+@media (max-width:720px){.tb{grid-template-columns:1fr}.tb-name{border-right:0;border-bottom:1.5px solid var(--ink)}}
+
+/* the analyzer */
+.picker{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--rule);background:var(--panel);padding:6px 10px;border-radius:3px;display:grid;gap:0;text-align:left;min-width:92px}
+.chip .id{font-family:var(--mono);font-size:13px;font-weight:600}
+.chip .k{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--trace);background:var(--trace-2);box-shadow:inset 0 -3px 0 var(--trace)}
+.scope{border:1.5px solid var(--ink);background:var(--panel)}
+.scope-head{padding:16px 18px;border-bottom:1px solid var(--rule);display:grid;gap:4px}
+.scope-head .what{font-family:var(--display);font-size:clamp(22px,3vw,28px);font-weight:600;line-height:1.15}
+.scope-head .what .hot{color:var(--cursor)}
+.scope-meta{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.path{display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--rule)}
+.blk{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--rule);color:var(--muted);border-radius:2px}
+.blk.on{border-color:var(--trace);color:var(--trace);background:var(--trace-2)}
+.blk.bug{border-color:var(--cursor);color:var(--cursor);background:var(--cursor-2)}
+.arrow{color:var(--muted);font-family:var(--mono);font-size:12px}
+.tablewrap{overflow-x:auto}
+table.chain{width:100%;border-collapse:collapse;min-width:720px;font-variant-numeric:tabular-nums}
+table.chain td,table.chain th{padding:6px 10px;border-bottom:1px solid var(--grid);vertical-align:middle;text-align:left}
+table.chain th{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--panel)}
+td.d{font-family:var(--mono);font-size:12px;color:var(--muted);width:36px}
+td.sig{font-family:var(--mono);font-size:13px;word-break:break-all}
+td.val{font-family:var(--mono);font-size:13px;white-space:nowrap}
+td.src{font-family:var(--mono);font-size:12px;color:var(--trace);white-space:nowrap}
+td.src.bug{color:var(--cursor);font-weight:600}
+td.bar{width:230px}
+tr.cross td{font-family:var(--mono);font-size:12px;color:var(--cursor);background:var(--cursor-2);text-align:center;letter-spacing:.04em}
+.tag{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.scope-foot{padding:14px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.reveal{border:1.5px solid var(--cursor);color:var(--cursor);background:transparent;padding:7px 14px;font-family:var(--display);font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-radius:2px}
+.verdict{font-family:var(--mono);font-size:13.5px}
+.verdict .hit{color:var(--ok);font-weight:600}.verdict .miss{color:var(--bad);font-weight:600}
+.axisnote{font-size:13px;color:var(--muted)}
+
+/* the chase */
+.chase{display:grid;gap:0;border-left:2px solid var(--rule);margin-left:10px}
+.layer{position:relative;padding:4px 0 22px 26px;display:grid;gap:4px}
+.layer::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--trace)}
+.layer.last::before{background:var(--cursor);border-color:var(--cursor)}
+.layer .lh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.layer .step{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.layer h3{font-size:22px}
+.layer .fix{font-family:var(--mono);font-size:13px;color:var(--trace)}
+.layer .fix s{color:var(--muted)}
+
+/* results */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.card{border:1px solid var(--rule);background:var(--panel);padding:18px;display:grid;gap:12px;align-content:start}
+.big{font-family:var(--display);font-size:46px;font-weight:600;line-height:1}
+.vtag{display:inline-block;font-family:var(--display);font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px}
+.vtag.inc{background:var(--trace-2);color:var(--trace)}
+.vtag.no{background:var(--bad-2);color:var(--bad)}
+.vtag.yes{background:var(--ok-2);color:var(--ok)}
+.vtag.un{border:1px dashed var(--rule);color:var(--muted)}
+svg text{font-family:var(--mono);fill:var(--muted)}
+table.hyp{width:100%;border-collapse:collapse}
+table.hyp td{padding:10px 8px;border-bottom:1px solid var(--grid);vertical-align:top}
+table.hyp td:first-child{font-family:var(--display);font-weight:700;font-size:18px;width:44px}
+.twist{border-left:4px solid var(--cursor);padding:6px 0 6px 18px;display:grid;gap:10px}
+.twist p.lede{font-size:21px}
+
+/* repair */
+.diff{font-family:var(--mono);font-size:13.5px;border:1px solid var(--rule);background:var(--panel);overflow-x:auto}
+.diff div{padding:5px 14px;white-space:pre}
+.diff .rm{background:var(--bad-2);color:var(--bad)}
+.diff .ad{background:var(--ok-2);color:var(--ok)}
+.diff .ctx{color:var(--muted);border-bottom:1px solid var(--grid);font-size:12px}
+.stim{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;max-width:520px}
+.stim span{aspect-ratio:1;border:1px solid var(--rule);border-radius:2px;max-width:100%}
+.stim span.p{background:var(--ok);border-color:var(--ok)}
+.stim span.f{background:var(--bad-2);border-color:var(--bad)}
+.runs{display:grid;gap:14px}
+.run{display:grid;gap:6px}
+.run .rh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:13px}
+pre.cmd{font-family:var(--mono);font-size:13px;border:1px solid var(--rule);background:var(--panel);padding:14px 16px;overflow-x:auto;margin:0;line-height:1.7}
+pre.cmd .c{color:var(--muted)}
+footer{font-size:14px;color:var(--muted);border-top:1px solid var(--rule);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){ .chain tr{animation:none} }
+</style>
+
+<div class="wrap">
+
+<header class="tb" aria-label="Title block">
+  <div class="tb-name">
+    <span class="label">A³ CHIA Hackathon · UC Santa Cruz</span>
+    <h1>WaveQL</h1>
+    <span class="sub">A waveform viewer with no screen</span>
+  </div>
+  <div class="tb-cells">
+    <div class="tb-cell"><span class="label">Device under test</span><b>BOOM v3 · out-of-order RISC-V</b></div>
+    <div class="tb-cell"><span class="label">Golden reference</span><b>Spike ISA, lockstep</b></div>
+    <div class="tb-cell"><span class="label">Corpus</span><b id="tb-corpus"></b></div>
+    <div class="tb-cell"><span class="label">Agent seat</span><b>gemini-3.1-pro-preview</b></div>
+  </div>
+  <div class="tb-foot">
+    <p class="thesis">When a processor fails a test, a person opens a waveform viewer and scrolls. We joined the waveform, the commit log and the golden ISA trace on cycle, and asked whether an AI agent debugs better with the join than with the same bytes as text. <em id="thesis-answer"></em></p>
+    <p class="muted" id="tb-result"></p>
+  </div>
+</header>
+
+<section aria-labelledby="h-why">
+  <div class="label">Try it · every killed mutant in the corpus</div>
+  <h2 id="h-why">Why did the processor fail?</h2>
+  <p>Pick a defect. WaveQL joins a waveform of up to 124&nbsp;MB with the commit log and the Spike divergence, then walks back through the generated netlist from the failure, following only the operands that account for each value. This is exactly what the agent receives in its first tool call.</p>
+  <div class="picker" id="picker" role="group" aria-label="Choose a defect"></div>
+  <div class="scope">
+    <div class="scope-head">
+      <div class="what" id="s-what"></div>
+      <div class="scope-meta" id="s-meta"></div>
+    </div>
+    <div class="path" id="s-path" aria-label="Processor blocks the chain passes through"></div>
+    <div class="tablewrap"><table class="chain" id="s-chain"></table></div>
+    <div class="scope-foot">
+      <span class="axisnote" id="s-axis"></span>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span class="verdict" id="s-verdict" hidden></span>
+        <button class="reveal" id="s-reveal" type="button">Reveal the defect</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-chase">
+  <div class="label">How we got here</div>
+  <h2 id="h-chase">Chasing the bottleneck up the stack</h2>
+  <p>The first measurement said nothing, and the reason was the evidence rather than the agent. Each time we repaired what stood between the evidence and the answer, the bottleneck moved one layer up.</p>
+  <div class="chase" id="chase"></div>
+</section>
+
+<section aria-labelledby="h-result">
+  <div class="label">The result</div>
+  <h2 id="h-result">What the measurement says</h2>
+  <div class="split">
+    <div class="card">
+      <div class="label">Verified repair rate, paired by task</div>
+      <div id="h1-tag"></div>
+      <svg id="ci" viewBox="0 0 440 150" role="img" aria-label="Fix-rate difference with confidence interval against the inconclusive band" style="width:100%;height:auto"></svg>
+      <p class="muted" id="h1-text" style="font-size:15px"></p>
+    </div>
+    <div class="card">
+      <div class="label">Tokens per episode</div>
+      <svg id="tok" viewBox="0 0 440 150" role="img" aria-label="Tokens per episode by arm" style="width:100%;height:auto"></svg>
+      <p class="muted" id="tok-text" style="font-size:15px"></p>
+    </div>
+  </div>
+  <div class="twist">
+    <div class="label" style="color:var(--cursor)">Where the budget goes</div>
+    <p class="lede" id="twist-lede"></p>
+    <p id="twist-body"></p>
+  </div>
+  <table class="hyp" id="hyp"></table>
+</section>
+
+<section aria-labelledby="h-repair">
+  <div class="label">The first verified repair by the waveform arm</div>
+  <h2 id="h-repair">One register stage, restored</h2>
+  <p>Mutant <code>b3bd38d7</code> removes a pipeline register on the exception-return path, so the redirect PC arrives one cycle out of step with the flush that consumes it. Both arms reached <code>core.scala</code>. Only one restored the stage.</p>
+  <div class="diff" aria-label="The waveform arm's patch">
+    <div class="ctx">generators/boom/src/main/scala/v3/exu/core.scala · line 507</div>
+    <div class="rm">-                                 (RegNext(csr.io.evec)),</div>
+    <div class="ad">+                                 RegNext(RegNext(csr.io.evec)),</div>
+  </div>
+  <div class="runs" id="runs"></div>
+</section>
+
+<section aria-labelledby="h-rep">
+  <div class="label">Reproduce</div>
+  <h2 id="h-rep">Run it yourself</h2>
+<pre class="cmd"><span class="c"># the causal account of one failure, from a built checkout</span>
+waveql-explain f27b9c07 --reveal
+<span class="c"># every capture window contains the failure it was aimed at</span>
+python scripts/check/verify_windows.py
+<span class="c"># repair rates and token costs by arm, paired by task</span>
+python scripts/run/headline.py
+<span class="c"># the whole CHIA pipeline: mutate, screen, ingest, query, repair, verify</span>
+waveql-loop --chipyard &lt;checkout&gt;</pre>
+</section>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+/*DATA*/
+(function(){
+const D = DATA;
+const $ = (id)=>document.getElementById(id);
+const esc = (s)=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtNum = (n)=> n==null ? "–" : Number(n).toLocaleString("en-US");
+const hex = (v)=>{ if(v==null||v==="None") return "–"; const n=Number(v); if(!Number.isFinite(n)) return String(v); return n>9 ? "0x"+BigInt(String(v)).toString(16) : String(n); };
+
+$("tb-corpus").textContent = `${D.chains.length} killed mutants, ${D.chains.filter(c=>c.kind==="assertion").length} hangs`;
+const H = D.headline;
+const TOKR = (H.tokens_per_episode_waveql && H.tokens_per_episode_control) ? H.tokens_per_episode_waveql / H.tokens_per_episode_control : null;
+const SAME = H.diff_ci[0] < 0 && H.diff_ci[1] > 0;
+const pts = v => `${v*100>0?'+':''}${(v*100).toFixed(1)}`;
+$("thesis-answer").textContent = SAME ? `At scale it repairs a statistically indistinguishable share of bugs${TOKR ? `, reading ${TOKR.toFixed(2)}x the tokens` : ""}.` : `At scale the repair-rate difference is ${pts(H.diff)} points.`;
+$("tb-result").textContent = `Result: the waveform arm repaired ${H.fixed_waveql} of ${H.n_waveql} episodes, the text control ${H.fixed_control} of ${H.n_control}; repair-rate difference ${pts(H.diff)} points (95% CI ${pts(H.diff_ci[0])} to ${pts(H.diff_ci[1])})${TOKR ? `, at ${TOKR.toFixed(2)}x the tokens per episode` : ""}.`;
+
+/* ---------- analyzer ---------- */
+const ORDER = ["Frontend","Rename","Dispatch","Issue","RegRead","Execute","FPU","Writeback","LSU","D-cache","ROB","CSR","Core"];
+const BUGBLOCK = (c)=>{
+  const f=c.bug_file, d=c.bug_dir;
+  if(/rob\.scala/.test(f)) return "ROB";
+  if(/rename/.test(f)) return "Rename";
+  if(/issue/.test(f)) return "Issue";
+  if(/register-read/.test(f)) return "RegRead";
+  if(/fpu|fdiv/.test(f)) return "FPU";
+  if(/functional-unit|execution-unit/.test(f)) return "Execute";
+  if(/dcache|mshrs/.test(f)) return "D-cache";
+  if(/lsu|tlb/.test(f)) return "LSU";
+  if(/core\.scala/.test(f)) return "Core";
+  return "Core";
+};
+const KIND = (c)=> c.kind==="assertion" ? "Hang / assert" : c.kind==="pc" ? "Wrong PC" : "Wrong value";
+let cur = 0, revealed = false;
+
+const picker = $("picker");
+D.chains.forEach((c,i)=>{
+  const b=document.createElement("button");
+  b.type="button"; b.className="chip"; b.id="pick-"+c.id;
+  b.innerHTML=`<span class="id">${esc(c.id)}</span><span class="k">${esc(KIND(c))}</span>`;
+  b.addEventListener("click",()=>{cur=i;revealed=false;render();});
+  picker.appendChild(b);
+});
+
+function barSVG(c, link){
+  const lo=c.window_lo, hi=c.window_hi, ret=c.facts && Number(c.facts.last_retired_cycle);
+  const W=210,Hh=18, x=(v)=> 4 + (W-8)*((v-lo)/Math.max(1,hi-lo));
+  let s=`<svg viewBox="0 0 ${W} ${Hh}" width="${W}" height="${Hh}" aria-hidden="true"><line x1="4" x2="${W-4}" y1="${Hh/2}" y2="${Hh/2}" stroke="var(--grid)" stroke-width="2"/>`;
+  const st=Number(link.stopped);
+  if(Number.isFinite(st) && Number.isFinite(lo)){
+    s+=`<rect x="${x(st)}" y="4" width="${Math.max(2,(W-4)-x(st))}" height="${Hh-8}" fill="var(--trace)" opacity=".85"/>`;
+  }
+  if(Number.isFinite(ret)) s+=`<line x1="${x(ret)}" x2="${x(ret)}" y1="1" y2="${Hh-1}" stroke="var(--cursor)" stroke-width="2"/>`;
+  return s+`</svg>`;
+}
+
+function render(){
+  const c=D.chains[cur];
+  D.chains.forEach((x,i)=>$("pick-"+x.id).setAttribute("aria-pressed", String(i===cur)));
+  const f=c.facts||{};
+  if(c.kind==="assertion"){
+    $("s-what").innerHTML = `The processor <span class="hot">hung</span>. Last instruction retired at cycle ${fmtNum(f.last_retired_cycle)}, then nothing for ${fmtNum(f.stalled_cycles)} cycles.`;
+  } else if(c.kind==="pc"){
+    $("s-what").innerHTML = `The processor fetched the <span class="hot">wrong address</span>. At cycle ${fmtNum(c.cycle)} it was at <span class="mono">${esc(c.dut)}</span>; Spike was at <span class="mono">${esc(c.golden)}</span>.`;
+  } else {
+    $("s-what").innerHTML = `A <span class="hot">wrong value</span> was committed. At cycle ${fmtNum(c.cycle)} register x${esc(c.reg)} got <span class="mono">${esc(c.dut)}</span>; Spike says <span class="mono">${esc(c.golden)}</span>.`;
+  }
+  $("s-meta").textContent = `${c.id} · ${c.stimulus} · ${fmtNum(c.signals)} signals · ${fmtNum(c.changes)} value changes · ${c.vcd_mb} MB waveform · explained in ${c.seconds}s`;
+
+  // blocks visited, in pipeline order, plus the defect's block once revealed
+  const visited=new Set(c.links.filter(l=>l.block).map(l=>l.block));
+  const bug=BUGBLOCK(c);
+  const shown=ORDER.filter(b=>visited.has(b) || (revealed && b===bug));
+  $("s-path").innerHTML = `<span class="tag" style="margin-right:6px">Chain passes through</span>` + shown.map((b,i)=>
+    `${i?'<span class="arrow">·</span>':''}<span class="blk ${revealed&&b===bug?'bug':visited.has(b)?'on':''}">${esc(b)}</span>`).join("");
+
+  const isHang = c.kind==="assertion";
+  let rows=`<thead><tr><th>Link</th><th>Block</th><th>Signal</th><th>Value</th>${isHang?'<th>Frozen from</th>':''}<th>Chisel source</th></tr></thead><tbody>`;
+  if(c.mode_note) rows+=`<tr class="cross"><td colspan="${isHang?6:5}">${esc(c.mode_note)}</td></tr>`;
+  c.links.forEach(l=>{
+    if(l.crossing){ rows+=`<tr class="cross"><td colspan="${isHang?6:5}">${esc(l.crossing)} · crossing the ROB's SRAM macro</td></tr>`; return; }
+    const src=l.chisel||""; const isBug = revealed && src && src.split(":")[0]===c.bug_file;
+    rows+=`<tr><td class="d">d${l.depth}</td><td><span class="tag">${esc(l.block)}</span></td><td class="sig">${esc(l.signal)}</td><td class="val">${esc(hex(l.value))}</td>${isHang?`<td class="bar">${barSVG(c,l)}</td>`:''}<td class="src ${isBug?'bug':''}">${esc(src||"—")}</td></tr>`;
+  });
+  $("s-chain").innerHTML = rows+"</tbody>";
+  $("s-axis").textContent = isHang
+    ? `Bars run from the cycle each signal last changed to the end of the recording (cycles ${fmtNum(c.window_lo)}–${fmtNum(c.window_hi)}). The magenta line is the last instruction the processor retired.`
+    : `Values at the cycle of the divergence. A value read from the ROB's SRAM macro is traced back through the write that stored it.`;
+
+  const v=$("s-verdict"), btn=$("s-reveal");
+  if(revealed){
+    const named=new Set(c.links.map(l=>(l.chisel||"").split(":")[0]).filter(Boolean));
+    const dirs=new Set(c.links.map(l=>D.dirs[(l.chisel||"").split(":")[0]]).filter(Boolean));
+    const fh=named.has(c.bug_file), dh=dirs.has(c.bug_dir);
+    v.innerHTML=`Defect: <b>${esc(c.bug_file)}:${c.bug_line}</b> <span class="muted">(${esc(c.operator)})</span> · file ${fh?'<span class="hit">named</span>':'<span class="miss">not named</span>'} · directory ${dh?'<span class="hit">named</span>':'<span class="miss">not named</span>'}`;
+    v.hidden=false; btn.textContent="Hide the defect";
+  } else { v.hidden=true; btn.textContent="Reveal the defect"; }
+}
+$("s-reveal").addEventListener("click",()=>{revealed=!revealed;render();});
+try{ const h=(location.hash||"").slice(1); const i=D.chains.findIndex(c=>c.id===h); if(i>=0) cur=i; else { const j=D.chains.findIndex(c=>c.id==="f27b9c07"); if(j>=0) cur=j; } }catch(e){}
+render();
+
+/* ---------- the chase ---------- */
+$("chase").innerHTML = D.chase.map((L,i)=>`
+  <div class="layer ${i===D.chase.length-1?'last':''}">
+    <div class="lh"><span class="step">layer ${i+1}</span><h3>${esc(L.name)}</h3></div>
+    <p>${L.what}</p>
+    <div class="fix">${L.fix}</div>
+  </div>`).join("");
+
+/* ---------- repair-rate difference, drawn to scale ---------- */
+(function(){
+  const W=440,x0=30,x1=410, lo=-0.3, hi=0.5, sx=v=>x0+(x1-x0)*((v-lo)/(hi-lo));
+  const band=H.band, d=H.diff, [a,b]=H.diff_ci;
+  let s=`<rect x="${sx(-band)}" y="30" width="${sx(band)-sx(-band)}" height="60" fill="var(--trace-2)"/>`;
+  s+=`<text x="${(sx(-band)+sx(band))/2}" y="24" text-anchor="middle" font-size="11">inconclusive band ±${Math.round(band*100)} pts</text>`;
+  for(let t=-0.3;t<=0.5001;t+=0.1){ const X=sx(t); s+=`<line x1="${X}" x2="${X}" y1="92" y2="97" stroke="var(--muted)"/><text x="${X}" y="112" text-anchor="middle" font-size="11">${t>0?'+':''}${Math.round(t*100)}</text>`; }
+  s+=`<line x1="${x0}" x2="${x1}" y1="92" y2="92" stroke="var(--muted)"/>`;
+  s+=`<line x1="${sx(0)}" x2="${sx(0)}" y1="30" y2="92" stroke="var(--muted)" stroke-dasharray="3 3"/>`;
+  s+=`<line x1="${sx(a)}" x2="${sx(b)}" y1="60" y2="60" stroke="var(--ink)" stroke-width="2"/>`;
+  s+=`<line x1="${sx(a)}" x2="${sx(a)}" y1="52" y2="68" stroke="var(--ink)" stroke-width="2"/><line x1="${sx(b)}" x2="${sx(b)}" y1="52" y2="68" stroke="var(--ink)" stroke-width="2"/>`;
+  s+=`<circle cx="${sx(d)}" cy="60" r="6" fill="var(--cursor)"/>`;
+  s+=`<text x="${sx(d)}" y="46" text-anchor="middle" font-size="12" style="fill:var(--ink)">${d>0?'+':''}${(d*100).toFixed(1)}</text>`;
+  s+=`<text x="${(x0+x1)/2}" y="140" text-anchor="middle" font-size="11">waveql minus control, percentage points (95% bootstrap)</text>`;
+  $("ci").innerHTML=s;
+  $("h1-tag").innerHTML=`<span class="vtag inc">${pts(H.diff)} pts</span>`;
+  $("h1-text").textContent = `waveql ${(H.waveql*100).toFixed(1)}% against control ${(H.control*100).toFixed(1)}% across ${H.paired} tasks where both arms ran: difference ${pts(H.diff)} points, 95% CI ${pts(H.diff_ci[0])} to ${pts(H.diff_ci[1])}.`;
+})();
+
+/* ---------- tokens per episode ---------- */
+(function(){
+  const tw=H.tokens_per_episode_waveql, tc=H.tokens_per_episode_control, m=Math.max(tw,tc)*1.1;
+  const x0=90,x1=410, sx=v=>x0+(x1-x0)*(v/m);
+  let s="";
+  [["waveql",tw,"var(--trace)",38],["control",tc,"var(--muted)",88]].forEach(([n,v,col,y])=>{
+    s+=`<text x="${x0-10}" y="${y+16}" text-anchor="end" font-size="13" style="fill:var(--ink)">${n}</text>`;
+    s+=`<rect x="${x0}" y="${y}" width="${sx(v)-x0}" height="26" fill="${col}"/>`;
+    s+=`<text x="${sx(v)+6}" y="${y+17}" font-size="12" style="fill:var(--ink)">${Math.round(v/1000)}k</text>`;
+  });
+  s+=`<line x1="${x0}" x2="${x0}" y1="30" y2="122" stroke="var(--muted)"/>`;
+  $("tok").innerHTML=s;
+  $("tok-text").textContent = `With the failure's causal account one query away, the waveform arm reads ${TOKR ? TOKR.toFixed(2) + "x" : "fewer"} the tokens per episode of an agent reading logs, and ${Math.round(H.tokens_per_fix_waveql/1000)}k against ${Math.round(H.tokens_per_fix_control/1000)}k tokens per verified repair.`;
+})();
+
+/* ---------- the twist ---------- */
+$("twist-lede").textContent = `The waveform arm put its patch in the defect's file in ${D.twist.rf_w} of ${H.n_waveql} episodes, the control in ${D.twist.rf_c} of ${H.n_control}: with the store, the agent spent more of its budget navigating and proposed less often.`;
+$("twist-body").textContent = `Once there, the waveform arm turned ${D.twist.conv_w} of its right-file episodes into verified fixes and the control arm ${D.twist.conv_c}.`;
+
+/* ---------- hypotheses ---------- */
+const HY=[
+ ["Repairs","Verified repair rate, joined store vs text", "MEASURED", `${pts(H.diff)} points, 95% CI ${pts(H.diff_ci[0])} to ${pts(H.diff_ci[1])}`],
+ ["Cost","Tokens per verified repair", "LOWER", `${Math.round(H.tokens_per_fix_waveql/1000)}k against ${Math.round(H.tokens_per_fix_control/1000)}k`],
+ ["Where","Patches in the defect's file", "MEASURED", `${D.twist.rf_w} of ${H.n_waveql} against ${D.twist.rf_c} of ${H.n_control}`],
+];
+$("hyp").innerHTML = HY.map(([id,claim,v,detail])=>{
+  const cls = v==="LOWER"?"yes":"inc";
+  return `<tr><td>${id}</td><td>${esc(claim)}<div class="muted mono" style="font-size:13px;margin-top:3px">${esc(detail)}</div></td><td style="text-align:right"><span class="vtag ${cls}">${esc(v)}</span></td></tr>`;
+}).join("");
+
+/* ---------- repair runs ---------- */
+$("runs").innerHTML = D.repair.map(r=>{
+  const sq = Array.from({length:12},(_,i)=>`<span class="${i<r.passed?'p':'f'}"></span>`).join("");
+  return `<div class="run"><div class="rh"><span><b>${esc(r.arm)}</b> · ${esc(r.where)}</span><span>${r.passed}/12 stimuli pass under Spike lockstep · <b style="color:${r.fixed?'var(--ok)':'var(--bad)'}">${r.fixed?'FIXED':'NOT FIXED'}</b></span></div><div class="stim" aria-label="${r.passed} of 12 stimuli pass">${sq}</div></div>`;
+}).join("");
+
+$("foot").innerHTML = `Jayaraj Jayakumar · UC Santa Cruz (MASC) · A³ CHIA Hackathon. ${esc(D.footnote)}`;
+})();
+</script>
