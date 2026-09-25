@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS spike_log (
 CREATE INDEX IF NOT EXISTS idx_spike_pc ON spike_log (pc);
 
 -- Where the two disagreed. `tolerated` marks a divergence class that is a known
--- DUT/Spike semantic difference rather than a bug; the list is fixed before the
--- headline run (PREREGISTRATION.md 4.1) and applied identically to every arm.
+-- DUT/Spike semantic difference rather than a bug; the list is fixed and
+-- applied identically to every arm.
 CREATE TABLE IF NOT EXISTS divergence (
     kind         TEXT NOT NULL,      -- pc | wdata | unknown
     cycle        BIGINT,             -- authoritative, from the commit log

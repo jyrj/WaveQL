@@ -245,7 +245,7 @@ def main() -> int:
     # so the two renderings cannot drift apart.
     cost = ROOT / "measurements" / "cost.json"
     nums = dict(vals)
-    nums["h1"] = {k: h[k] for k in ("diff", "diff_ci", "waveql",
+    nums["repair"] = {k: h[k] for k in ("diff", "diff_ci", "waveql",
                                     "control", "waveql_ci", "control_ci", "paired",
                                     "episodes", "lost", "band")}
     nums["cost"] = json.loads(cost.read_text()) if cost.is_file() else {}
@@ -371,7 +371,7 @@ BuggyBOOM tasks, every proposed patch verified by rebuilding the core:
 
 | | WaveQL (joined store) | text control |
 |---|---|---|
-| verified repair rate (per task) | {nums['h1']['waveql']:.1%} | {nums['h1']['control']:.1%} |
+| verified repair rate (per task) | {nums['repair']['waveql']:.1%} | {nums['repair']['control']:.1%} |
 | episodes repaired | {vals['NFW']} / {vals['NW']} | {vals['NFC']} / {vals['NC']} |
 | tokens per episode | **{vals['TEW']}** | {vals['TEC']} |
 | tokens per verified repair | **{vals['TFW']}** | {vals['TFC']} |

@@ -43,9 +43,8 @@ from waveql.mutator.operators import MutationSite
 
 VERDICTS = ("fixed", "not-fixed", "build-failed", "no-proposal", "rejected")
 
-# Edits that would repair the ORACLE rather than the design. Pre-registered:
-# fixed before any fix-rate run, so a rule cannot be added after seeing which
-# way it cuts.
+# Edits that would repair the ORACLE rather than the design. The list is fixed
+# and applied to every arm alike, so no rule is tuned to an outcome.
 ORACLE_TAMPERING = (
     (re.compile(r"\bassert\s*\("), "removes or weakens a Chisel assertion"),
     (re.compile(r"\brequire\s*\("), "removes an elaboration-time contract"),

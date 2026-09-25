@@ -50,9 +50,9 @@ class WaveQLMediumBoomV3Config extends Config(
 
 /** The in-order control: same collateral, Rocket instead of BOOM.
   *
-  * Rocket is the cheap end of the corpus and the honesty check on H3: if the
-  * ISS-join only helps on an out-of-order core, that is a finding about where
-  * the join matters, and it needs an in-order arm to be stated at all.
+  * Rocket is the in-order comparison point: if the join only helps on an
+  * out-of-order core, that is a finding about where the join matters, and it
+  * needs an in-order core to be stated at all.
   */
 class WaveQLRocketConfig extends Config(
   new chipyard.harness.WithCospikeAndSelectiveWaveform ++

@@ -67,7 +67,8 @@ def test_stopping_the_harness_stops_its_builds_too(tmp_path):
         "with mutated(root, site):\n"
         "    print('READY', flush=True)\n"
         # a tree, the way make forks compilers: a shell with two long children
-        f"    children.run(['sh', '-c', 'exec -a {marker} sleep 300 & exec -a {marker} sleep 300; wait'])\n"
+        # (bash, not sh: `exec -a` is a bash builtin and sh is dash on Ubuntu)
+        f"    children.run(['bash', '-c', 'exec -a {marker} sleep 300 & exec -a {marker} sleep 300; wait'])\n"
     )
     p = subprocess.Popen([sys.executable, "-c", child, str(tmp_path)],
                          stdout=subprocess.PIPE, text=True)
