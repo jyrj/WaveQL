@@ -8,9 +8,11 @@
 #let C = N.cost
 #let accent = rgb("#1a56a0")
 #let hot = rgb("#b8235a")
-#let pct(x) = str(calc.round(x * 100, digits: 1)) + "%"
+#let fix(x, d) = { let s = str(calc.round(x, digits: d)).replace("−", "-"); let neg = s.starts-with("-"); s = s.trim("-"); let p = s.split("."); let f = if p.len() > 1 { p.at(1) } else { "" }; while f.len() < d { f += "0" }; (if neg { "−" } else { "" }) + p.at(0) + (if d > 0 { "." + f } else { "" }) }
+#let pct(x) = fix(x * 100, 1) + "%"
+#let mn(s) = str(s).replace("-", "−")
 #let pts(x) = (if x >= 0 { "+" } else { "" }) + str(calc.round(x * 100, digits: 1))
-#let r2(x) = str(calc.round(x, digits: 2))
+#let r2(x) = fix(x, 2)
 #let CO = N.corpus
 #let TASKS = CO.draw1.tasks + CO.draw2.tasks + CO.draw3.tasks
 #let SCREENED = CO.draw1.screened + CO.draw2.screened + CO.draw3.screened
@@ -47,7 +49,7 @@
 #set par(justify: true, leading: 0.58em, spacing: 0.58em, first-line-indent: 1em)
 #show raw: set text(font: "DejaVu Sans Mono", size: 7pt)
 #show heading.where(level: 1): it => {
-  v(0.7em)
+  v(0.45em)
   block(text(size: 10pt, weight: "bold")[#it.body])
   v(0.2em)
 }
@@ -59,6 +61,8 @@
 #show figure.caption: set par(first-line-indent: 0em)
 #show figure.where(kind: table): set figure.caption(position: top)
 #set figure(gap: 0.5em)
+#set figure(placement: auto)
+#set place(clearance: 1.1em)
 
 
 #place(top + center, float: true, scope: "parent", clearance: 1.2em)[
@@ -73,26 +77,26 @@
 
 #let cls(n) = text(font: "DejaVu Sans Mono", size: 5.4pt, n)
 #let node(body, emph: false) = box(
-  width: 100%, inset: (x: 4pt, y: 5pt), radius: 2pt,
+  width: 100%, height: 40pt, inset: (x: 3pt, y: 3pt), radius: 2pt,
   fill: if emph { accent.lighten(88%) } else { luma(247) },
   stroke: if emph { 1pt + accent } else { 0.5pt + luma(170) },
-  align(center, {set par(justify: false); text(size: 7.4pt)[#body]}))
+  align(center + horizon, {set par(justify: false, leading: 0.45em); text(size: 7.4pt)[#body]}))
 #let arr = align(center + horizon, text(fill: luma(120), size: 9pt)[→])
 #place(top + center, float: true, scope: "parent", clearance: 1em)[
   #figure(
     grid(columns: (1fr, 8pt, 1.25fr, 8pt, 1.05fr, 8pt, 1.9fr, 8pt, 1fr, 8pt, 1fr),
       align: horizon,
-      node[*Mutate*\ #cls("ChiselMutateNode")\ Chisel source, 8 classes], arr,
-      node[*Screen*\ #cls("DetectabilityScreenNode")\ 12 programs, Spike + asserts], arr,
-      node[*Capture*\ #cls("VerilatorRunNode")\ window holds the failure], arr,
-      node(emph: true)[*WaveQL store* · #cls("WaveQLIngestNode")\ waveform ⋈ commit log ⋈ Spike trace\ ⋈ generated netlist ⋈ Chisel locators], arr,
-      node[*Agent*\ #cls("WaveQLQueryTool")\ 12 operations, one edit], arr,
-      node[*Verify*\ #cls("FixVerifyNode")\ rebuild, re-run all 12],
+      node[*Mutate*\ #cls("ChiselMutateNode")\ Chisel source], arr,
+      node[*Screen*\ #cls("DetectabilityScreenNode")\ Spike + assertions], arr,
+      node[*Capture*\ #cls("VerilatorRunNode")\ failure window], arr,
+      node(emph: true)[*WaveQL store* · #cls("WaveQLIngestNode")\ waveform ⋈ commits ⋈ Spike trace\ ⋈ netlist ⋈ Chisel locators], arr,
+      node[*Agent*\ #cls("WaveQLQueryTool")\ 12 queries, 1 edit], arr,
+      node[*Verify*\ #cls("FixVerifyNode")\ rebuild + rerun],
     ),
     caption: [The loop as a CHIA graph. Each box is a CHIA block; CHIA's own Chipyard
       nodes build and run the core. The agent never sees a raw dump, and only a rebuilt
       core that passes every program in lockstep with Spike counts as repaired.],
-    kind: image, supplement: [Figure],
+    kind: image, supplement: [Figure], placement: none,
   ) <sys>
 ]
 
@@ -109,7 +113,7 @@
   Across #H.episodes scored episodes of `gemini-3.1-pro`, the joined view
   repairs #if SAME [a statistically indistinguishable share of bugs] else [#pct(H.waveql) of bugs]
   (#pct(H.waveql) against #pct(H.control) for the same evidence as text,
-  difference #N.DIFF points, 95% CI \[#N.DLO, #N.DHI\]) while reading
+  difference #mn(N.DIFF) points, 95% CI \[#mn(N.DLO), #mn(N.DHI)\]) while reading
   #TOKR× the tokens per episode (95% CI \[#TOKLO, #TOKHI\]) and #FIXSAVE fewer
   per verified repair. The limit is navigation, not evidence: with the store,
   the agent spent its turns searching 29,183 signal names and proposed a patch in
@@ -188,16 +192,16 @@ cannot: `stall_report` (why the pipeline stopped retiring), `source_of` and
     show raw: set text(size: 6.8pt)
     table(columns: (auto, 1fr), align: (left, left), inset: (x: 3pt, y: 1.9pt),
       table.header([*operation*], [*answers*]),
-      [`first_divergence`], [how and when the run failed: the first mismatch with Spike, or the assertion that fired],
-      [`stall_report`], [why retirement stopped: last retired cycle, ROB head, the chain of stalled signals],
-      [`why`], [which operands account for a signal's value, walked back through the netlist],
-      [`drivers`], [the signals a value is computed from, across module boundaries],
+      [`first_divergence`], [first mismatch with Spike, or the assertion],
+      [`stall_report`], [why retirement stopped: the stalled chain],
+      [`why`], [the operands that account for a value],
+      [`drivers`], [the signals a value is computed from],
       [`source_of`], [the Chisel file and line that produce a signal],
-      [`commits`], [instructions retired around a cycle: pc, instruction, destination, value],
+      [`commits`], [instructions retired around a cycle, with values],
       [`inflight`], [ROB occupancy at a cycle: valid entries, head, tail],
       [`state_at`], [the value of any signals at a cycle],
       [`window`], [signal changes within a cycle range],
-      [`trace_signal`], [one signal across a cycle range, including the value it entered with],
+      [`trace_signal`], [one signal across a range, with entry value],
       [`find_signals`], [search among 29,183 signal names],
       [`sql`], [read-only SQL over the joined tables],
     )
@@ -205,44 +209,6 @@ cannot: `stall_report` (why the pipeline stopped retiring), `source_of` and
   kind: table, supplement: [Table],
   caption: [The WaveQL query surface. Every answer is size-capped and logged.],
 ) <ops>
-
-= 3 BuggyBOOM: bugs an oracle sees
-
-*Mutation.* A Scala lexer drives eight operator classes over BOOM v3's Chisel
-source --- comparison and boundary flips, `&&`/`||` swaps, inverted selects,
-handshake and pipeline-depth edits (a dropped `RegNext`), index arithmetic and
-constant flips --- excluding sites inside assertions and the commit-log `printf`
-the join reads, and performance-only sites a correct-but-mispredicting core
-would hide. Three seeded, class-balanced draws sampled #SCREENED distinct mutants.
-
-*Two oracles.* Each mutant runs twelve programs --- ISA tests, CSR and atomic
-tests, and benchmarks --- under Spike lockstep and with BOOM's own Chisel
-assertions live. The second oracle matters on an out-of-order core: a deadlocked
-pipeline never commits anything wrong, so Spike alone scores a hang as a
-survivor. #TASKS mutants are killed by a localizable oracle, #KILLASR of them by
-an assertion.
-
-*Evidence that contains the failure.* Each kill ships with its co-simulation
-log, commit log and a waveform window. A hang is asserted 8,192 cycles after
-the last commit, so its window is aimed there, and every window is checked
-against the cycle of the failure: #N.windows.ok of #N.windows.n contain it (the
-rest diverge within their first two commits, before the dump's first sample).
-
-#figure(
-  {
-    let f(x) = if x == none { "–" } else { pct(x) }
-    table(columns: (auto, auto, auto, auto, 1fr, 1fr),
-      align: (left, right, right, right, right, right),
-      table.header([*Class*], [*screened*], [*killed*], [*tasks*], [*waveql*], [*control*]),
-      ..N.classes.map(c => (
-        c.cls, str(c.screened), str(c.killed), str(c.paired), f(c.waveql), f(c.control),
-      )).flatten()
-    )
-  },
-  kind: table, supplement: [Table],
-  caption: [BuggyBOOM by mutation class: mutants screened and killed, and the
-    verified repair rate per task for each arm.],
-) <classes>
 
 #let chain = CH.find(c => c.id == "f27b9c07")
 #let lo = 2436
@@ -288,8 +254,48 @@ rest diverge within their first two commits, before the dump's first sample).
     and nothing retired for #chain.facts.stalled_cycles cycles after. Reading
     down: the ROB is empty because dispatch stalled because the store queue is
     full. The defect is in `dcache.scala`, behind the LSU.],
+  placement: none,
 ) <chain>
 ]
+
+= 3 BuggyBOOM: bugs an oracle sees
+
+*Mutation.* A Scala lexer drives eight operator classes over BOOM v3's Chisel
+source --- comparison and boundary flips, `&&`/`||` swaps, inverted selects,
+handshake and pipeline-depth edits (a dropped `RegNext`), index arithmetic and
+constant flips --- excluding sites inside assertions and the commit-log `printf`
+the join reads, and performance-only sites a correct-but-mispredicting core
+would hide. Three seeded, class-balanced draws sampled #SCREENED distinct mutants.
+
+*Two oracles.* Each mutant runs twelve programs --- ISA tests, CSR and atomic
+tests, and benchmarks --- under Spike lockstep and with BOOM's own Chisel
+assertions live. The second oracle matters on an out-of-order core: a deadlocked
+pipeline never commits anything wrong, so Spike alone scores a hang as a
+survivor. #TASKS mutants are killed by a localizable oracle, #KILLASR of them by
+an assertion.
+
+*Evidence that contains the failure.* Each kill ships with its co-simulation
+log, commit log and a waveform window. A hang is asserted 8,192 cycles after
+the last commit, so its window is aimed there, and every window is checked
+against the cycle of the failure: #N.windows.ok of #N.windows.n contain it (the
+rest diverge within their first two commits, before the dump's first sample).
+
+#figure(
+  {
+    let f(x) = if x == none { "–" } else { pct(x) }
+    table(columns: (auto, auto, auto, auto, 1fr, 1fr),
+      align: (left, right, right, right, right, right),
+      table.header([*Class*], [*screened*], [*killed*], [*tasks*], [*waveql*], [*control*]),
+      ..N.classes.map(c => (
+        c.cls, str(c.screened), str(c.killed), str(c.paired), f(c.waveql), f(c.control),
+      )).flatten()
+    )
+  },
+  kind: table, supplement: [Table],
+  caption: [BuggyBOOM by mutation class: mutants screened and killed, and the
+    verified repair rate per task for each arm.],
+) <classes>
+
 
 = 4 From what to why
 
@@ -330,17 +336,17 @@ write that produced the value read (@chain, @vchain).
 }
 #figure(
   {
-    set text(size: 6.8pt)
-    show raw: set text(size: 6.3pt)
+    set text(size: 6.6pt)
+    show raw: set text(size: 5.9pt)
     let path = vchain.links.filter(l => "crossing" in l or l.value == vroot)
-    table(columns: (auto, auto, 1fr), align: (left, left, left),
-      inset: (x: 2.6pt, y: 2pt),
-      table.header([*Block*], [*Signal holding the value*], [*Chisel*]),
+    table(columns: (auto, auto, auto), align: (left, left, left),
+      inset: (x: 2.2pt, y: 2pt),
+      table.header([*Block*], [*Signal holding the value*], [*Chisel file:line*]),
       ..path.map(l => if "crossing" in l {
         (table.cell(colspan: 3, fill: hot.lighten(90%), align: center,
           text(fill: hot)[#l.crossing · through the ROB's SRAM macro]),)
       } else {
-        (text(fill: luma(90))[#l.block], raw(l.signal), text(fill: trace)[#raw(l.chisel)])
+        (text(fill: luma(90))[#l.block], raw(l.signal), text(fill: trace)[#raw(l.chisel.split(":").slice(0, calc.min(2, l.chisel.split(":").len())).join(":").replace(".scala", ""))])
       }).flatten()
     )
   },
@@ -375,7 +381,8 @@ rebuilding the core and re-running all twelve programs under Spike (@results).
   table(columns: (auto, 1fr, 1fr),
     align: (left, right, right),
     table.header([], [*WaveQL*], [*text control*]),
-    [verified repair rate (per task)], [#pct(H.waveql) \[#pct(H.waveql_ci.at(0)), #pct(H.waveql_ci.at(1))\]], [#pct(H.control) \[#pct(H.control_ci.at(0)), #pct(H.control_ci.at(1))\]],
+    [verified repair rate (per task)], [*#pct(H.waveql)*], [#pct(H.control)],
+    [#h(0.8em)95% bootstrap interval], [\[#pct(H.waveql_ci.at(0)), #pct(H.waveql_ci.at(1))\]], [\[#pct(H.control_ci.at(0)), #pct(H.control_ci.at(1))\]],
     [episodes repaired], [#N.NFW / #N.NW], [#N.NFC / #N.NC],
     [patch in the defect's file], [#N.LW], [#N.LC],
     [tokens per episode], [*#N.TEW*], [#N.TEC],
@@ -385,8 +392,8 @@ rebuilding the core and re-running all twelve programs under Spike (@results).
     rates are per task, averaged over seeds, with 95% bootstrap intervals over tasks.],
 ) <results>
 
-*Repairs.* Paired by task, the difference in verified repair rate is #N.DIFF points,
-95% CI \[#N.DLO, #N.DHI\]#if SAME [ --- statistically indistinguishable; the
+*Repairs.* Paired by task, the difference in verified repair rate is #mn(N.DIFF) points,
+95% CI \[#mn(N.DLO), #mn(N.DHI)\]#if SAME [ --- statistically indistinguishable; the
 interval excludes a gain of ten points or more]. *Cost.* Per task, the WaveQL arm
 read #TOKR× the control's tokens per episode (95% CI \[#TOKLO, #TOKHI\], 10,000
 resamples over tasks), and spent #FIXSAVE fewer tokens per verified repair.
@@ -459,7 +466,7 @@ netlist replaces searching the logs for it (@kinds).
         let col = if last { hot } else { black }
         place(dx: fx(r.lo) * 100%, dy: y, line(length: (fx(r.hi) - fx(r.lo)) * 100%, stroke: 1.1pt + col))
         place(dx: fx(r.diff) * 100% - 2.6pt, dy: y - 2.6pt, circle(radius: 2.6pt, fill: col))
-        place(dx: fx(r.hi) * 100% + 3pt, dy: y - 3.5pt, text(fill: col)[#r.diff_s])
+        place(dx: fx(r.hi) * 100% + 3pt, dy: y - 3.5pt, text(fill: col)[#mn(r.diff_s)])
       }
       place(dy: rows.len() * rh + 2pt, line(length: 100%, stroke: 0.5pt + luma(120)))
       for t in (-0.4, -0.2, 0.0, 0.2, 0.4) {
@@ -473,7 +480,7 @@ netlist replaces searching the logs for it (@kinds).
 #let twist-fig = {
   // A funnel per arm: every episode -> proposed a patch -> patch in the
   // defect's file -> verified fix. Where the waveform arm loses its episodes.
-  let arms = (("waveql", N.behaviour.waveql, int(N.LW.split(" / ").at(0)), N.NFW, trace),
+  let arms = (("WaveQL", N.behaviour.waveql, int(N.LW.split(" / ").at(0)), N.NFW, trace),
               ("control", N.behaviour.control, int(N.LC.split(" / ").at(0)), N.NFC, luma(110)))
   set text(size: 6.8pt)
   grid(columns: (34pt, 1fr, 64pt), row-gutter: 2.4pt, column-gutter: 4pt, align: horizon,
@@ -502,10 +509,6 @@ VMs is what made the second number affordable.
 
 = 6 Where the budget goes
 
-#figure(twist-fig, caption: [Where each arm's episodes went: every scored episode,
-  those that proposed a patch, those whose patch was in the defect's file, and
-  verified repairs.]) <twist>
-
 The two arms diverge before the edit, not at it (@twist). The WaveQL agent
 proposed a patch in #pct(BW.proposed) of episodes against #pct(BC.proposed), and
 made 30 or more tool calls in #pct(BW.capped) of them against #pct(BC.capped). Its
@@ -514,6 +517,10 @@ over 29,183 signal names; `why`, the operation built to make that search
 unnecessary, was #pct(BW.why_share) of its calls. Once a patch was in the right
 file, the two arms turned #pct(conv(N.CW)) and #pct(conv(N.CC)) of them into
 verified repairs.
+
+#figure(twist-fig, caption: [Where each arm's episodes went: every scored episode,
+  those that proposed a patch, those whose patch was in the defect's file, and
+  verified repairs.]) <twist>
 
 When the agent does take the short path, the chain shows what a log cannot. On
 a pipeline-depth mutant that dropped one `RegNext` from the exception-return
@@ -525,6 +532,29 @@ causal chain says what a signal held and when it stopped. The next surface
 should lead with that chain rather than wait to be asked for it.
 
 = 7 One repair, end to end
+
+The mutant flipped one comparison in the D-cache's writeback unit, so it ended a
+multi-beat release to L2 one beat early --- a bug that never commits a wrong
+value, only violates the bus protocol, and that only the TileLink monitor on
+the bus catches. From the assertion the agent
+found the channel, asked `why` its valid signal held, followed the chain through
+the release arbiter into the writeback unit, read that state machine, and
+restored the comparison (@e2e). A log names the monitor; the chain names the
+state machine behind it.
+
+
+= 8 The loop at scale
+
+The study ran as one CHIA loop across four 96-vCPU VMs, each running sixteen
+Chipyard worker checkouts; screening a draw of about 100 mutants takes an hour and a half on one VM.
+Agent episodes run one process per task, since the tools' netlist evaluation is
+CPU-bound. Verification --- a full Chisel-to-Verilator rebuild per patch --- is
+the expensive stage, so verifiers on every VM draw from one shared queue and
+claim each cell by creating an object in Cloud Storage with
+`ifGenerationMatch=0`, which succeeds for exactly one caller: every patch is
+verified exactly once. Every recorded build failure is traced to the file its
+own patch edited, and a stopped verifier restores both the mutation and the
+agent's patch, so no verdict can be charged to another cell's residue (@scale).
 
 #figure(
   {
@@ -546,28 +576,6 @@ should lead with that chain rather than wait to be asked for it.
     comparison that ends the writeback unit's multibeat release, and the agent's
     patch is its exact inverse. 19 queries, from the transcripts in the artifact.],
 ) <e2e>
-
-The mutant flipped one comparison in the D-cache's writeback unit, so it ended a
-multi-beat release to L2 one beat early --- a bug that never commits a wrong
-value, only violates the bus protocol, and that only the TileLink monitor on
-the bus catches. From the assertion the agent
-found the channel, asked `why` its valid signal held, followed the chain through
-the release arbiter into the writeback unit, read that state machine, and
-restored the comparison (@e2e). A log names the monitor; the chain names the
-state machine behind it.
-
-= 8 The loop at scale
-
-The study ran as one CHIA loop across four 96-vCPU VMs, each running sixteen
-Chipyard worker checkouts; screening a draw of about 100 mutants takes an hour and a half on one VM.
-Agent episodes run one process per task, since the tools' netlist evaluation is
-CPU-bound. Verification --- a full Chisel-to-Verilator rebuild per patch --- is
-the expensive stage, so verifiers on every VM draw from one shared queue and
-claim each cell by creating an object in Cloud Storage with
-`ifGenerationMatch=0`, which succeeds for exactly one caller: every patch is
-verified exactly once. Every recorded build failure is traced to the file its
-own patch edited, and a stopped verifier restores both the mutation and the
-agent's patch, so no verdict can be charged to another cell's residue (@scale).
 
 #figure(
   table(columns: (1fr, auto), align: (left, right),
@@ -622,9 +630,8 @@ X-propagation. Six mutants were drawn in two of the three draws and count once.
 
 = 12 Released as CHIA blocks; reproducibility
 
-The loop is five CHIA blocks --- `ChiselMutateNode`, `DetectabilityScreenNode`,
-`WaveQLIngestNode`, `WaveQLQueryTool`, `FixVerifyNode` --- composed by
-`waveql-loop`, and each is usable alone. The artifact, at
+The loop is the five CHIA blocks of @sys, composed by `waveql-loop`; each is
+usable alone. The artifact, at
 #link("https://github.com/jyrj/WaveQL")[`github.com/jyrj/WaveQL`], contains the loop, the
 store and query surface, the mutator, the screening and repair harness, the
 cloud scale-out scripts, BuggyBOOM's manifests, every measurement file cited and
@@ -640,16 +647,20 @@ Gemini models are the agents under test. All experimental design decisions, all
 measurements reported here, and the final content and framing of this paper are
 the responsibility of the human author.]
 
-#v(0.15em)
-#text(size: 7.0pt)[#set par(leading: 0.42em)
-
-*References.*
-\[1\] Tencent, `wave-mcp`: waveform tools for agents over MCP, 2025.
-\[2\] BluesFL: fault localization for RISC-V cores from co-simulation divergence, DAC 2026.
-\[3\] HWE-Bench: repository-level hardware bug repair, 2025.
-\[4\] Encarsia: provably observable bug injection for BOOM at RTLIL level, USENIX Security 2025.
-\[5\] J. Zhao et al., SonicBOOM: the 3rd generation Berkeley out-of-order machine, CARRV 2020.
-\[6\] A. Amid et al., Chipyard: integrated design, simulation and implementation framework, IEEE Micro 2020.
-\[7\] CHIA: an open framework for agentic HW/SW co-design flows, https://chialoops.ai.
-\[8\] RISC-V International, Spike ISA simulator.
-]
+#v(0.3em)
+#block(text(size: 9pt, weight: "bold")[References])
+#{
+  set text(size: 7pt)
+  set par(first-line-indent: 0em, justify: true, leading: 0.4em, spacing: 0.4em)
+  grid(columns: (12pt, 1fr), row-gutter: 3pt,
+    ..(
+      [Tencent. `wave-mcp`: waveform tools for agents over MCP. 2025.],
+      [BluesFL: fault localization for RISC-V cores from co-simulation divergence. DAC 2026.],
+      [HWE-Bench: repository-level hardware bug repair. 2025.],
+      [Encarsia: provably observable bug injection for BOOM at RTLIL level. USENIX Security 2025.],
+      [J. Zhao et al. SonicBOOM: the 3rd generation Berkeley out-of-order machine. CARRV 2020.],
+      [A. Amid et al. Chipyard: integrated design, simulation and implementation framework for custom SoCs. IEEE Micro 2020.],
+      [CHIA: an open framework for agentic HW/SW co-design flows. #link("https://chialoops.ai")[chialoops.ai].],
+      [RISC-V International. Spike RISC-V ISA simulator.],
+    ).enumerate().map(((i, r)) => ([\[#(i + 1)\]], r)).flatten())
+}
